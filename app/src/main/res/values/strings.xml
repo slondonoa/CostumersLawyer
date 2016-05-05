@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">Gestión de clientes</string>
+    <string name="action_settings">Settings</string>
+    <string name="refresh">Refrescar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="document">Cedula: </string>
+    <string name="name">Nombre: </string>
+    <string name="lastname">Apellidos: </string>
+    <string name="phone">Telefono: </string>
+    <string name="phone1">Telefono 1: </string>
+    <string name="phone2">Telefono 2: </string>
+    <string name="phone3">Telefono 3: </string>
+    <string name="email">Correo: </string>
+    <string name="clientstatus">Estado del cliente: </string>
+    <string name="processstatus_">Estado del proceso: </string>
+    <string name="processed">Tramite: </string>
+    <string name="limitprocess">Fecha limite: </string>
+    <string name="lastcontat">Ultimo contacto: </string>
+    <string name="costumerstatus">Estado del cliente: </string>
+    <string name="processstatus">Estado del proceso: </string>
+    <string name="observations">Observaciones: </string>
+    <string name="action_search">Buscar</string>
+    <string name="limitprocess_">Fecha limite</string>
+    <string name="lastcontat_">Ultimo contacto</string>
+    <string name="cell">Celular: </string>
+    <string name="cell1">Celular 1: </string>
+    <string name="cell2">Celular 2: </string>
+    <string name="cell3">Celular 3: </string>
+    <string name="err_msg_document">Ingrese un documento</string>
+    <string name="err_msg_name">Ingerse el nombre</string>
+    <string name="err_msg_lastname">Ingrese los apellidos</string>
+    <string name="save_contacts">Guardar todos los contactos</string>
+
+    <string-array name="costumerstatus_array">
+        <item>Estado del cliente</item>
+        <item>Contratado</item>
+        <item>Posible cliente</item>
+        <item>Pendientes por contactar</item>
+        <item>Pendiente por documentacion</item>
+        <item>Solo consulta</item>
+    </string-array>
+    <string-array name="processstatus_array">
+        <item>Estado del proceso</item>
+        <item>En cuenta de cobro</item>
+        <item>En demanda</item>
+        <item>En ejecutivo</item>
+        <item>En tramite</item>
+        <item>En tutela</item>
+        <item>Otra oficina</item>
+        <item>Pago verificado</item>
+        <item>Pendiente por demanda</item>
+        <item>Pendiente por ejecutivo</item>
+        <item>Pendiente por pago</item>
+        <item>Pendiente por tramite</item>
+        <item>Pendiente por tutela</item>
+        <item>Prioritario</item>
+        <item>Terminado</item>
+    </string-array>
+    <string-array name="processed_array">
+        <item>Tramite</item>
+        <item>Auxilio funerario</item>
+        <item>Calificación de invalidez</item>
+        <item>Devolucion de aportes fondos privados</item>
+        <item>Divorcios</item>
+        <item>Incrementos</item>
+        <item>Indemnizacion sustitutiva</item>
+        <item>Ineficacia de traslado</item>
+        <item>Intereses moratorios</item>
+        <item>Nombramiento de curador</item>
+        <item>Pago a herederos</item>
+        <item>Pensión de invalidez</item>
+        <item>Pensión de sobrevivientes</item>
+        <item>Pension vejez</item>
+        <item>Reliquidacion</item>
+        <item>Retroactivo pension invalidez</item>
+        <item>Retroactivo pension sobrevivientes</item>
+        <item>Retroactivo pension vejez</item>
+        <item>Seguros</item>
+        <item>Sucesiones</item>
+        <item>Transito</item>
+    </string-array>
+    <string name="title_activity_filtered_customers">FilteredCustomers</string>
+    <string name="title_activity_filtered_costumer">FilteredCostumer</string>
+    <string name="title_activity_detail_costumer">DetailCostumer</string>
+    <string name="action_refresh">Settings</string>
+    <string name="logo_desc">App logo</string>
+    <string name="title_costumer_list">Items</string>
+    <string name="title_costumer_detail">Costumer Detail</string>
+    <string name="title_activity_edit_costumer">EditCostumer</string>
+
+</resources>

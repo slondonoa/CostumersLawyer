@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.costumers.lawyer">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/MyMaterialTheme">
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.FilteredCustomers"
+            android:parentActivityName=".activity.MainActivity"
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity
+            android:name=".activity.DetailCostumer"
+            android:label="@string/title_activity_detail_costumer"
+            android:parentActivityName=".activity.FilteredCustomers"
+            android:theme="@style/MyMaterialTheme"
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity
+            android:name=".activity.EditCostumer"
+            android:label="@string/title_activity_edit_costumer"
+            android:theme="@style/MyMaterialTheme"
+            android:windowSoftInputMode="adjustNothing"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,125 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_weight="2">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textInputLayoutDocument">
+    <EditText android:id="@+id/txtDocument"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/document"
+        android:numeric="integer"
+        android:inputType="number"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textInputLayoutName">
+        <EditText android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name"
+            android:singleLine="true"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textInputLayoutLastName">
+        <EditText android:id="@+id/txtLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lastname"
+            android:singleLine="true"/>
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textInputLayoutObservations">
+    <EditText android:id="@+id/txtObservations"
+        android:hint="@string/observations"
+        android:inputType="textMultiLine"
+        android:gravity="top|left"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:scrollbars="vertical"
+        />
+    </android.support.design.widget.TextInputLayout>
+<android.support.v7.widget.AppCompatSpinner
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:entries="@array/costumerstatus_array"
+    android:layout_marginTop="10dp"
+    android:id="@+id/spcostumersatatus"
+    ></android.support.v7.widget.AppCompatSpinner>
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/processstatus_array"
+        android:layout_marginTop="10dp"
+        android:id="@+id/spprocessstatus"
+        ></android.support.v7.widget.AppCompatSpinner>
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/processed_array"
+        android:layout_marginTop="10dp"
+        android:id="@+id/spProcessed"
+        ></android.support.v7.widget.AppCompatSpinner>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/radioButtonGroup">
+        <android.support.v7.widget.AppCompatRadioButton android:id="@+id/radio_lastdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lastcontat_"
+            android:checked="true"/>
+        <android.support.v7.widget.AppCompatRadioButton android:id="@+id/radio_limitprocess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/limitprocess_"/>
+    </RadioGroup>
+
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="16dp">
+    <Button android:text="aceptar"
+        android:id="@+id/butAceptar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    >
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        >
+
+        <GridLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:rowCount="12"
+            android:columnCount="2"
+            android:orientation="horizontal"
+            android:clickable="false"
+            android:id="@+id/costumer_detail_container"
+            >
+
+
+            <TextView
+                android:id="@+id/lblDocument"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/document"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtDocument"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+
+
+                />
+
+            <TextView
+                android:id="@+id/lblName"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtName"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/lblLastname"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lastname"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtLastName"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/lblPhone1"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/phone1"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtPhone1"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/lblPhone2"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/phone2"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtPhone2"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/lblPhone3"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/phone3"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtPhone3"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/lblCell1"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cell1"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtCell1"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/lblCell2"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cell2"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtCell2"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/lblCell3"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cell3"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtCell3"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:visibility="invisible"/>
+
+
+            <TextView
+                android:id="@+id/lblEmail"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/lblClientstatus"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/clientstatus"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtClientstatus"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/lblProcessstatus"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/processstatus"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtProcessstatus"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/lblProcessed"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/processed"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtProcessed"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/lblLimitprocess"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/limitprocess"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtLimitProcess"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                />
+
+            <TextView
+                android:id="@+id/lblLastcontac"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lastcontat"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtLastContact"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/lblObservations"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/observations"
+                android:layout_columnSpan="2"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtObservations"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginTop="15dp"/>
+
+        </GridLayout>
+
+</ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginEnd="16dp">
+
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/ibcall1"
+            android:adjustViewBounds="false"
+            android:background="@mipmap/ic_phone_forward"
+            />
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/ibcall2"
+            android:adjustViewBounds="false"
+            android:background="@mipmap/ic_phone_forward" />
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/ibcall3"
+            android:adjustViewBounds="false"
+            android:background="@mipmap/ic_phone_forward" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/ibphone1"
+            android:adjustViewBounds="false"
+            android:background="@mipmap/ic_phone_clasic" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/ibphone2"
+            android:adjustViewBounds="false"
+            android:background="@mipmap/ic_phone_clasic" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/ibphone3"
+            android:adjustViewBounds="false"
+            android:background="@mipmap/ic_phone_clasic" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/ibemail"
+            android:adjustViewBounds="false"
+            android:background="@mipmap/ic_email" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/ibedit"
+            android:adjustViewBounds="false"
+            android:background="@mipmap/ic_edit_user" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/ibsave"
+            android:adjustViewBounds="false"
+            android:background="@mipmap/ic_save_user" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout >
