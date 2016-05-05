@@ -20,15 +20,31 @@
         "source": "D:\\Empresa\\Proyectos\\Clientes\\AbogadosPensionesMedellin\\Movil\\CostumersLawyer\\library\\src\\main\\res\\color\\mdtp_date_picker_year_selector.xml"
     },
     {
+        "merged": "D:\\REPOSITORY\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\debug\\color\\mdtp_done_text_color_dark.xml",
+        "source": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\color\\mdtp_done_text_color_dark.xml"
+    },
+    {
         "merged": "D:\\Proyectos\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\debug\\color\\mdtp_date_picker_year_selector.xml",
         "source": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\color\\mdtp_date_picker_year_selector.xml"
     },
     {
-        "merged": "D:\\Empresa\\Proyectos\\Clientes\\AbogadosPensionesMedellin\\Movil\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\debug\\color\\mdtp_date_picker_selector.xml",
-        "source": "D:\\Empresa\\Proyectos\\Clientes\\AbogadosPensionesMedellin\\Movil\\CostumersLawyer\\library\\src\\main\\res\\color\\mdtp_date_picker_selector.xml"
+        "merged": "D:\\REPOSITORY\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\debug\\color\\mdtp_date_picker_selector.xml",
+        "source": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\color\\mdtp_date_picker_selector.xml"
+    },
+    {
+        "merged": "D:\\REPOSITORY\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\debug\\color\\mdtp_done_text_color.xml",
+        "source": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\color\\mdtp_done_text_color.xml"
     },
     {
         "merged": "D:\\Proyectos\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\debug\\color\\mdtp_done_text_color.xml",
         "source": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\color\\mdtp_done_text_color.xml"
+    },
+    {
+        "merged": "D:\\REPOSITORY\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\debug\\color\\mdtp_date_picker_year_selector.xml",
+        "source": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\color\\mdtp_date_picker_year_selector.xml"
+    },
+    {
+        "merged": "D:\\Empresa\\Proyectos\\Clientes\\AbogadosPensionesMedellin\\Movil\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\debug\\color\\mdtp_date_picker_selector.xml",
+        "source": "D:\\Empresa\\Proyectos\\Clientes\\AbogadosPensionesMedellin\\Movil\\CostumersLawyer\\library\\src\\main\\res\\color\\mdtp_date_picker_selector.xml"
     }
 ]

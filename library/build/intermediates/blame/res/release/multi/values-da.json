@@ -1,5 +1,238 @@
 [
     {
+        "outputFile": "D:\\Proyectos\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\release\\values-da\\values-da.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 105,
+                    "endColumn": 60,
+                    "endOffset": 161
+                },
+                "from": {
+                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "position": {
+                        "startLine": 30,
+                        "startColumn": 4,
+                        "startOffset": 1909,
+                        "endColumn": 60,
+                        "endOffset": 1965
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 166,
+                    "endColumn": 107,
+                    "endOffset": 269
+                },
+                "from": {
+                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 1286,
+                        "endColumn": 107,
+                        "endOffset": 1389
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 274,
+                    "endColumn": 114,
+                    "endOffset": 384
+                },
+                "from": {
+                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "position": {
+                        "startLine": 29,
+                        "startColumn": 4,
+                        "startOffset": 1790,
+                        "endColumn": 118,
+                        "endOffset": 1904
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 389,
+                    "endColumn": 80,
+                    "endOffset": 465
+                },
+                "from": {
+                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 809,
+                        "endColumn": 80,
+                        "endOffset": 885
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 470,
+                    "endColumn": 106,
+                    "endOffset": 572
+                },
+                "from": {
+                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 890,
+                        "endColumn": 106,
+                        "endOffset": 992
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 577,
+                    "endColumn": 115,
+                    "endOffset": 688
+                },
+                "from": {
+                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 1670,
+                        "endColumn": 119,
+                        "endOffset": 1785
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 693,
+                    "endColumn": 109,
+                    "endOffset": 798
+                },
+                "from": {
+                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 997,
+                        "endColumn": 109,
+                        "endOffset": 1102
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 803,
+                    "endColumn": 91,
+                    "endOffset": 890
+                },
+                "from": {
+                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 1495,
+                        "endColumn": 91,
+                        "endOffset": 1582
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 895,
+                    "endColumn": 86,
+                    "endOffset": 977
+                },
+                "from": {
+                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 1107,
+                        "endColumn": 86,
+                        "endOffset": 1189
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 982,
+                    "endColumn": 91,
+                    "endOffset": 1069
+                },
+                "from": {
+                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 1194,
+                        "endColumn": 91,
+                        "endOffset": 1281
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 1074,
+                    "endColumn": 82,
+                    "endOffset": 1152
+                },
+                "from": {
+                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 1587,
+                        "endColumn": 82,
+                        "endOffset": 1665
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 1157,
+                    "endColumn": 100,
+                    "endOffset": 1253
+                },
+                "from": {
+                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 1394,
+                        "endColumn": 100,
+                        "endOffset": 1490
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "D:\\Empresa\\Proyectos\\Clientes\\AbogadosPensionesMedellin\\Movil\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\release\\values-da\\values-da.xml",
         "map": [
             {
@@ -233,7 +466,7 @@
         ]
     },
     {
-        "outputFile": "D:\\Proyectos\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\release\\values-da\\values-da.xml",
+        "outputFile": "D:\\REPOSITORY\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\release\\values-da\\values-da.xml",
         "map": [
             {
                 "to": {
@@ -244,13 +477,13 @@
                     "endOffset": 161
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
                     "position": {
                         "startLine": 30,
                         "startColumn": 4,
-                        "startOffset": 1909,
+                        "startOffset": 1939,
                         "endColumn": 60,
-                        "endOffset": 1965
+                        "endOffset": 1995
                     }
                 }
             },
@@ -263,13 +496,13 @@
                     "endOffset": 269
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
                     "position": {
                         "startLine": 24,
                         "startColumn": 4,
-                        "startOffset": 1286,
+                        "startOffset": 1310,
                         "endColumn": 107,
-                        "endOffset": 1389
+                        "endOffset": 1413
                     }
                 }
             },
@@ -282,13 +515,13 @@
                     "endOffset": 384
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
                     "position": {
                         "startLine": 29,
                         "startColumn": 4,
-                        "startOffset": 1790,
+                        "startOffset": 1819,
                         "endColumn": 118,
-                        "endOffset": 1904
+                        "endOffset": 1933
                     }
                 }
             },
@@ -301,13 +534,13 @@
                     "endOffset": 465
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
-                        "startOffset": 809,
+                        "startOffset": 828,
                         "endColumn": 80,
-                        "endOffset": 885
+                        "endOffset": 904
                     }
                 }
             },
@@ -320,13 +553,13 @@
                     "endOffset": 572
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
-                        "startOffset": 890,
+                        "startOffset": 910,
                         "endColumn": 106,
-                        "endOffset": 992
+                        "endOffset": 1012
                     }
                 }
             },
@@ -339,13 +572,13 @@
                     "endOffset": 688
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
                     "position": {
                         "startLine": 28,
                         "startColumn": 4,
-                        "startOffset": 1670,
+                        "startOffset": 1698,
                         "endColumn": 119,
-                        "endOffset": 1785
+                        "endOffset": 1813
                     }
                 }
             },
@@ -358,13 +591,13 @@
                     "endOffset": 798
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
-                        "startOffset": 997,
+                        "startOffset": 1018,
                         "endColumn": 109,
-                        "endOffset": 1102
+                        "endOffset": 1123
                     }
                 }
             },
@@ -377,13 +610,13 @@
                     "endOffset": 890
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 4,
-                        "startOffset": 1495,
+                        "startOffset": 1521,
                         "endColumn": 91,
-                        "endOffset": 1582
+                        "endOffset": 1608
                     }
                 }
             },
@@ -396,13 +629,13 @@
                     "endOffset": 977
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
-                        "startOffset": 1107,
+                        "startOffset": 1129,
                         "endColumn": 86,
-                        "endOffset": 1189
+                        "endOffset": 1211
                     }
                 }
             },
@@ -415,13 +648,13 @@
                     "endOffset": 1069
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
                     "position": {
                         "startLine": 23,
                         "startColumn": 4,
-                        "startOffset": 1194,
+                        "startOffset": 1217,
                         "endColumn": 91,
-                        "endOffset": 1281
+                        "endOffset": 1304
                     }
                 }
             },
@@ -434,13 +667,13 @@
                     "endOffset": 1152
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
                     "position": {
                         "startLine": 27,
                         "startColumn": 4,
-                        "startOffset": 1587,
+                        "startOffset": 1614,
                         "endColumn": 82,
-                        "endOffset": 1665
+                        "endOffset": 1692
                     }
                 }
             },
@@ -453,13 +686,13 @@
                     "endOffset": 1253
                 },
                 "from": {
-                    "file": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
+                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-da\\strings.xml",
                     "position": {
                         "startLine": 25,
                         "startColumn": 4,
-                        "startOffset": 1394,
+                        "startOffset": 1419,
                         "endColumn": 100,
-                        "endOffset": 1490
+                        "endOffset": 1515
                     }
                 }
             }

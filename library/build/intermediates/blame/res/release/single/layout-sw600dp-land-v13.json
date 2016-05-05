@@ -4,6 +4,10 @@
         "source": "D:\\Proyectos\\CostumersLawyer\\library\\src\\main\\res\\layout-sw600dp-land\\mdtp_date_picker_dialog.xml"
     },
     {
+        "merged": "D:\\REPOSITORY\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-land-v13\\mdtp_date_picker_dialog.xml",
+        "source": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\layout-sw600dp-land\\mdtp_date_picker_dialog.xml"
+    },
+    {
         "merged": "D:\\Empresa\\Proyectos\\Clientes\\AbogadosPensionesMedellin\\Movil\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-land-v13\\mdtp_date_picker_dialog.xml",
         "source": "D:\\Empresa\\Proyectos\\Clientes\\AbogadosPensionesMedellin\\Movil\\CostumersLawyer\\library\\src\\main\\res\\layout-sw600dp-land\\mdtp_date_picker_dialog.xml"
     }
