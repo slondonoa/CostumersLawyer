@@ -289,6 +289,25 @@
                 android:layout_marginTop="15dp"/>
 
             <TextView
+                android:id="@+id/lblSource"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/source"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/txtSource"
+                android:textColor="@color/LastContact"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                />
+
+            <TextView
                 android:id="@+id/lblLimitprocess"
                 android:textColor="@color/Name"
                 android:textSize="16dp"

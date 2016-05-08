@@ -2,9 +2,11 @@ package com.costumers.lawyer.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.costumers.lawyer.R;
+import com.costumers.lawyer.activity.DetailCostumer;
 import com.costumers.lawyer.data.DataBaseManager;
 import com.costumers.lawyer.entities.Persons;
 import com.costumers.lawyer.service.RestService;
@@ -38,8 +41,8 @@ import retrofit.client.Response;
 public class RegisterCostumer extends Fragment  {
 
     private DataBaseManager manager;
-    private TextView txtDocument, txtName, txtLastName, txtCell, txtPhone, txtobservations,txtlastcontac,txtLimitDate, txtEmail;
-    private Spinner spProcessed, spCostumersatatus, spProcessstatus;
+    private TextView txtDocument, txtName, txtLastName, txtCell,txtCell2, txtPhone, txtobservations,txtlastcontac,txtLimitDate, txtEmail;
+    private Spinner spProcessed, spCostumersatatus, spProcessstatus,spSource;
     private TextInputLayout textInputLayoutDocument,textInputLayoutName,textInputLayoutLastName;
     ProgressDialog dialog =null;
 
@@ -70,12 +73,14 @@ public class RegisterCostumer extends Fragment  {
         txtName =(TextView) view.findViewById(R.id.txtName);
         txtLastName =(TextView) view.findViewById(R.id.txtLastName);
         txtCell =(TextView) view.findViewById(R.id.txtCell);
+        txtCell2 =(TextView) view.findViewById(R.id.txtCell2);
         txtPhone =(TextView) view.findViewById(R.id.txtPhone);
         txtEmail =(TextView) view.findViewById(R.id.txtEmail);
         txtobservations =(TextView) view.findViewById(R.id.txtObservations);
         spProcessstatus = (Spinner) view.findViewById(R.id.spprocessstatus);
         spCostumersatatus = (Spinner) view.findViewById(R.id.spcostumersatatus);
         spProcessed = (Spinner) view.findViewById(R.id.spProcessed);
+        spSource = (Spinner) view.findViewById(R.id.spSource);
         txtlastcontac=(TextView)view.findViewById(R.id.txtLastcontac);
         txtLimitDate=(TextView) view.findViewById(R.id.txtLimitprocess);
         textInputLayoutDocument=(TextInputLayout) view.findViewById(R.id.textInputLayoutDocument);
@@ -194,24 +199,27 @@ public class RegisterCostumer extends Fragment  {
                 dialog = ProgressDialog.show(getActivity(), "",
                         "Registrando cliente. Por favor espere...", true);
                 if (submitForm()) {
-                    String strDocument = txtDocument.getText().toString();
-                    String strName = txtName.getText().toString();
-                    String strLatName = txtLastName.getText().toString();
-                    String strCell = txtCell.getText().toString();
-                    String strPhone = txtPhone.getText().toString();
-                    String strEmail = txtEmail.getText().toString();
-                    String strObservations = txtobservations.getText().toString();
-                    String strProcessstatus = spProcessstatus.getSelectedItem().toString();
-                    String strCostumerStatus = spCostumersatatus.getSelectedItem().toString();
-                    String strProcessed = spProcessed.getSelectedItem().toString();
-                    String strLimitDate = txtLimitDate.getText().toString();
-                    String strLatContact = txtlastcontac.getText().toString();
+                    String strDocument = txtDocument.getText().toString().trim();
+                    String strName = txtName.getText().toString().trim();
+                    String strLatName = txtLastName.getText().toString().trim();
+                    String strCell = txtCell.getText().toString().trim();
+                    String strCell2 = txtCell2.getText().toString().trim();
+                    String strPhone = txtPhone.getText().toString().trim();
+                    String strEmail = txtEmail.getText().toString().trim();
+                    String strObservations = txtobservations.getText().toString().trim();
+                    String strProcessstatus = spProcessstatus.getSelectedItem().toString().trim();
+                    String strCostumerStatus = spCostumersatatus.getSelectedItem().toString().trim();
+                    String strProcessed = spProcessed.getSelectedItem().toString().trim();
+                    String strSource = spSource.getSelectedItem().toString().trim();
+                    String strLimitDate = txtLimitDate.getText().toString().trim();
+                    String strLatContact = txtlastcontac.getText().toString().trim();
 
                     final Persons persons = new Persons();
                     persons.Document = strDocument;
                     persons.Name = strName;
                     persons.LastName = strLatName;
                     persons.cell1 = strCell;
+                    persons.cell2 = strCell2;
                     persons.phone = strPhone;
                     persons.maial1=strEmail;
                     persons.observations = strObservations;
@@ -224,6 +232,10 @@ public class RegisterCostumer extends Fragment  {
                     if ( spProcessed.getSelectedItemPosition() > 0) {
                         persons.processed = strProcessed;
                     }
+                    if ( spSource.getSelectedItemPosition() > 0) {
+                        persons.source = strSource;
+                    }
+
                     persons.LimitDateProcessStatus = strLimitDate;
                     persons.lastContact = strLatContact;
                     restService = new RestService();
@@ -231,7 +243,7 @@ public class RegisterCostumer extends Fragment  {
                         @Override
                         public void success(Integer idperson, Response response) {
                             List<Persons> PersonsList = new ArrayList<Persons>();
-                            persons.IdPerson = idperson.toString();
+                            persons.IdPerson = idperson.toString().trim();
                             PersonsList.add(persons);
                             manager = new DataBaseManager(getActivity());
                             manager.Open(getActivity());
@@ -240,6 +252,30 @@ public class RegisterCostumer extends Fragment  {
                             if (dialog != null) {
                                 dialog.cancel();
                             }
+                            txtDocument.setText("");
+                            txtName.setText("");
+                            txtLastName.setText("");
+                            txtCell.setText("");
+                            txtCell2.setText("");
+                            txtPhone.setText("");
+                            txtEmail.setText("");
+                            txtobservations.setText("");
+                            spProcessstatus.setSelection(0);
+                            spCostumersatatus.setSelection(0);
+                            spProcessed.setSelection(0);
+                            spSource.setSelection(0);
+                            txtlastcontac.setText("");
+                            txtLimitDate.setText("");
+                            textInputLayoutDocument.setErrorEnabled(false);
+                            textInputLayoutName.setErrorEnabled(false);
+                            textInputLayoutLastName.setErrorEnabled(false);
+
+                            String message = idperson.toString();
+                            Intent intent;
+                            intent = new Intent(getActivity(), DetailCostumer.class);
+                            intent.putExtra(AlarmClock.EXTRA_MESSAGE, message);
+                            startActivity(intent);
+
                             Toast.makeText(getActivity(), "Cliente registrado correctamente.", Toast.LENGTH_LONG).show();
                         }
 

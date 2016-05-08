@@ -47,12 +47,11 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
     RestService restService;
     ProgressDialog dialog =null;
     private int _IdPerson=0;
-    private TextView txtDocument, txtName, txtLastName, txtCell, txtPhone, txtobservations,txtlastcontac,txtLimitDate, txtEmail;
+    private TextView txtDocument, txtName, txtLastName, txtCell,txtCell2, txtPhone, txtobservations,txtlastcontac,txtLimitDate, txtEmail;
     private TextInputLayout textInputLayoutName,textInputLayoutLastName;
-    private Spinner spProcessed, spCostumersatatus, spProcessstatus;
+    private Spinner spProcessed, spCostumersatatus, spProcessstatus, spSource;
     View view;
     static String idperson="";
-    String cell2="";
     String email2="";
     public static EditCostumerData newInstance(String id) {
         idperson=id;
@@ -92,10 +91,12 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
         txtName =(TextView) view.findViewById(R.id.txtName);
         txtLastName =(TextView) view.findViewById(R.id.txtLastName);
         txtCell =(TextView) view.findViewById(R.id.txtCell);
+        txtCell2 =(TextView) view.findViewById(R.id.txtCell2);
         txtPhone =(TextView) view.findViewById(R.id.txtPhone);
         txtEmail =(TextView) view.findViewById(R.id.txtEmail);
         txtobservations =(TextView) view.findViewById(R.id.txtObservations);
         spProcessstatus = (Spinner) view.findViewById(R.id.spprocessstatus);
+        spSource = (Spinner) view.findViewById(R.id.spSource);
         spCostumersatatus = (Spinner) view.findViewById(R.id.spcostumersatatus);
         spProcessed = (Spinner) view.findViewById(R.id.spProcessed);
         txtlastcontac=(TextView) view.findViewById(R.id.txtLastcontac);
@@ -107,6 +108,13 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
                 android.R.layout.simple_list_item_1,
                 arrayListprocessstatus );
         spProcessstatus.setAdapter(arrayAdapterprocessstatus);
+
+        String[] arrayListsource = getResources().getStringArray(R.array.source_array);
+        ArrayAdapter<String> arrayAdaptersource = new ArrayAdapter<String>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                arrayListsource );
+        spSource.setAdapter(arrayAdaptersource);
 
         String[] arrayListcostumerstatus = getResources().getStringArray(R.array.costumerstatus_array);
         ArrayAdapter<String> arrayAdaptercostumerstatus = new ArrayAdapter<String>(
@@ -200,25 +208,27 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
                 dialog = ProgressDialog.show(getActivity(), "",
                         "Actualizando cliente. Por favor espere...", true);
                 if (submitForm()) {
-                    String strDocument = txtDocument.getText().toString();
-                    String strName = txtName.getText().toString();
-                    String strLatName = txtLastName.getText().toString();
-                    String strCell = txtCell.getText().toString();
-                    String strPhone = txtPhone.getText().toString();
-                    String strEmail = txtEmail.getText().toString();
-                    String strObservations = txtobservations.getText().toString();
-                    String strProcessstatus = spProcessstatus.getSelectedItem().toString();
-                    String strCostumerStatus = spCostumersatatus.getSelectedItem().toString();
-                    String strProcessed = spProcessed.getSelectedItem().toString();
-                    String strLimitDate = txtLimitDate.getText().toString();
-                    String strLatContact = txtlastcontac.getText().toString();
+                    String strDocument = txtDocument.getText().toString().trim();
+                    String strName = txtName.getText().toString().trim();
+                    String strLatName = txtLastName.getText().toString().trim();
+                    String strCell = txtCell.getText().toString().trim();
+                    String strCell2 = txtCell2.getText().toString().trim();
+                    String strPhone = txtPhone.getText().toString().trim();
+                    String strEmail = txtEmail.getText().toString().trim();
+                    String strObservations = txtobservations.getText().toString().trim();
+                    String strProcessstatus = spProcessstatus.getSelectedItem().toString().trim();
+                    String strSource = spSource.getSelectedItem().toString().trim();
+                    String strCostumerStatus = spCostumersatatus.getSelectedItem().toString().trim();
+                    String strProcessed = spProcessed.getSelectedItem().toString().trim();
+                    String strLimitDate = txtLimitDate.getText().toString().trim();
+                    String strLatContact = txtlastcontac.getText().toString().trim();
 
                     final Persons persons = new Persons();
                     persons.Document = strDocument;
                     persons.Name = strName;
                     persons.LastName = strLatName;
                     persons.cell1 = strCell;
-                    persons.cell2=cell2;
+                    persons.cell2=strCell2;
                     persons.phone = strPhone;
                     persons.maial1=strEmail;
                     persons.maial2=email2;
@@ -226,6 +236,10 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
                     if ( spProcessstatus.getSelectedItemPosition() > 0) {
                         persons.ProcessStatus = strProcessstatus;
                     }
+                    if ( spSource.getSelectedItemPosition() > 0) {
+                        persons.source = strSource;
+                    }
+
                     if ( spCostumersatatus.getSelectedItemPosition() > 0) {
                         persons.clientstatus = strCostumerStatus;
                     }
@@ -239,7 +253,6 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
                     restService.getService().EditCostumer(persons, Integer.parseInt(idperson), new Callback<Boolean>() {
                         @Override
                         public void success(Boolean sucs, Response response) {
-                            persons.cell2="";
                             persons.maial2="";
                             List<Persons> PersonsList = new ArrayList<Persons>();
                             PersonsList.add(persons);
@@ -306,7 +319,7 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
 
                             txtLastName.setText(person.LastName);
                             txtCell.setText(person.cell1.trim());
-                            cell2=person.cell1.trim();
+                            txtCell2.setText(person.cell2.trim());
                             email2=person.maial1.trim();
                             txtPhone.setText(person.phone.trim());
                             txtEmail.setText(person.maial1);
@@ -328,6 +341,26 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
                                 }
                                 cont++;
                             }
+
+
+                            String[] arrayListsource = getResources().getStringArray(R.array.source_array);//.indexOf(person.ProcessStatus);
+                            cont=0;
+                            for (String s : arrayListsource)
+                            {
+                                String vl=s.trim().toLowerCase().toString();
+                                String vp=person.source.trim().toLowerCase().toString();
+                                String vlf=vl.toString();
+                                String vpf=vp.toString();
+                                boolean compare=vlf.equals(vpf);
+                                if (compare)
+                                {
+                                    spSource.setSelection(cont);
+                                    break;
+                                }
+                                cont++;
+                            }
+
+
 
 
                             String[] arrayListcostumerstatus = getResources().getStringArray(R.array.costumerstatus_array);//.indexOf(person.ProcessStatus);

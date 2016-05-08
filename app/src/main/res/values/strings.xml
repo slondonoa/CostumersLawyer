@@ -32,6 +32,7 @@
     <string name="err_msg_name">Ingerse el nombre</string>
     <string name="err_msg_lastname">Ingrese los apellidos</string>
     <string name="save_contacts">Guardar todos los contactos</string>
+    <string name="source">Fuente: </string>
 
     <string-array name="costumerstatus_array">
         <item>Estado del cliente</item>
@@ -89,5 +90,17 @@
     <string name="title_costumer_list">Items</string>
     <string name="title_costumer_detail">Costumer Detail</string>
     <string name="title_activity_edit_costumer">EditCostumer</string>
+    <string-array name="source_array">
+        <item>Fuente</item>
+        <item>Eliecer</item>
+        <item>Internet</item>
+        <item>Oficina Ofix 33</item>
+        <item>Oficina centro</item>
+        <item>Otra oficina</item>
+        <item>Otro</item>
+        <item>Radio</item>
+        <item>Referido</item>
+        <item>Tramitador</item>
+    </string-array>
 
 </resources>

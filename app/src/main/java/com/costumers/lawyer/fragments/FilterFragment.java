@@ -69,6 +69,9 @@ public class FilterFragment extends Fragment implements OnClickListener  {
         Spinner spProcessed = (Spinner) getView().findViewById(R.id.spProcessed);
         String strProcessed = spProcessed.getSelectedItem().toString();
 
+        Spinner spSource = (Spinner) getView().findViewById(R.id.spSource);
+        String strSource = spSource.getSelectedItem().toString();
+
         RadioGroup radiogroup =  (RadioGroup) getView().findViewById(R.id.radioButtonGroup);
         int selectedId = radiogroup .getCheckedRadioButtonId();
         // find the radio button by returned id
@@ -149,6 +152,18 @@ public class FilterFragment extends Fragment implements OnClickListener  {
             }
             and=true;
         }
+
+        if ( spSource.getSelectedItemPosition() > 0)
+        {
+            save=true;
+            if (and) {
+                where = where + " " + " AND (source like '%" + strSource + "%' or source like '" + strSource + "%' or source like '%" + strSource + "' or source like '" + strSource + "')";
+            }else {
+                where = where + " " + "(source like '%" + strSource + "%' or source like '" + strSource + "%' or source like '%" + strSource + "' or source like '" + strSource + "')";
+            }
+            and=true;
+        }
+
 
         if(radio.equals("Ultimo contacto"))
         {

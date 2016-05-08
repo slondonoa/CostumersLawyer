@@ -86,6 +86,7 @@ public class DetailCostumer extends AppCompatActivity {
         TextView tvcell1 = (TextView) findViewById(R.id.txtCell1);
         TextView tvcell2 = (TextView) findViewById(R.id.txtCell2);
         TextView tvcell3 = (TextView) findViewById(R.id.txtCell3);
+        TextView tvSource = (TextView) findViewById(R.id.txtSource);
 
         manager = new DataBaseManager(this);
         manager.Open(DetailCostumer.this);
@@ -144,6 +145,11 @@ public class DetailCostumer extends AppCompatActivity {
                 processed = persons.processed;
             }
 
+            String source = "";
+            if (persons.source != null) {
+                source = persons.source;
+            }
+
             String last = "";
             if (persons.lastContact != null) {
                 last = persons.lastContact;
@@ -184,6 +190,7 @@ public class DetailCostumer extends AppCompatActivity {
             tvLimitProcess.setText(limitprocess);
             tvLastcontact.setText(last);
             tvObservations.setText(observations);
+            tvSource.setText(source);
 
             imbedit = (ImageButton) findViewById(R.id.ibedit);
             imbedit.setVisibility(View.VISIBLE);
