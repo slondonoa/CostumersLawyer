@@ -208,8 +208,7 @@ public class DetailCostumer extends AppCompatActivity {
 
             imbemail = (ImageButton) findViewById(R.id.ibemail);
             imbemail.setVisibility(View.GONE);
-            if (mail.length() > 0 && isValidEmail(mail))
-            {
+            if (mail.length() > 0 && isValidEmail(mail)) {
                 imbemail.setVisibility(View.VISIBLE);
                 final String finalMail = mail;
                 imbemail.setOnClickListener(new View.OnClickListener() {
@@ -235,8 +234,7 @@ public class DetailCostumer extends AppCompatActivity {
 
             imbsave = (ImageButton) findViewById(R.id.ibsave);
             imbsave.setVisibility(View.GONE);
-            if (phone.length() == 7 || phone2.length() == 7 ||phone3.length() == 7 || cell1.length() == 10 || cell2.length() == 10 || cell3.length() == 10)
-            {
+            if (phone.length() == 7 || phone2.length() == 7 || phone3.length() == 7 || cell1.length() == 10 || cell2.length() == 10 || cell3.length() == 10) {
                 imbsave.setVisibility(View.VISIBLE);
                 final String finalName = name;
                 final String finalLastname = lastname;
@@ -270,7 +268,7 @@ public class DetailCostumer extends AppCompatActivity {
                         }
 
                         //------------------------------------------------------ Mobile Number
-                        if (!TextUtils.isEmpty(finalCell1) && finalCell1.length()==10) {
+                        if (!TextUtils.isEmpty(finalCell1) && finalCell1.length() == 10) {
                             ops.add(ContentProviderOperation.
                                     newInsert(ContactsContract.Data.CONTENT_URI)
                                     .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
@@ -282,7 +280,7 @@ public class DetailCostumer extends AppCompatActivity {
                                     .build());
                         }
 
-                        if (!TextUtils.isEmpty(finalCell2) && finalCell2.length()==10) {
+                        if (!TextUtils.isEmpty(finalCell2) && finalCell2.length() == 10) {
                             ops.add(ContentProviderOperation.
                                     newInsert(ContactsContract.Data.CONTENT_URI)
                                     .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
@@ -294,7 +292,7 @@ public class DetailCostumer extends AppCompatActivity {
                                     .build());
                         }
 
-                        if (!TextUtils.isEmpty(finalCell3) && finalCell3.length()==10) {
+                        if (!TextUtils.isEmpty(finalCell3) && finalCell3.length() == 10) {
                             ops.add(ContentProviderOperation.
                                     newInsert(ContactsContract.Data.CONTENT_URI)
                                     .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
@@ -307,19 +305,19 @@ public class DetailCostumer extends AppCompatActivity {
                         }
 
                         //------------------------------------------------------ Home Numbers
-                        if (!TextUtils.isEmpty(finalPhone1) && finalPhone1.length()==7) {
+                        if (!TextUtils.isEmpty(finalPhone1) && finalPhone1.length() == 7) {
                             ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
                                     .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
                                     .withValue(ContactsContract.Data.MIMETYPE,
                                             ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
-                                    .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER,"034"+ finalPhone1)
+                                    .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, "034" + finalPhone1)
                                     .withValue(ContactsContract.CommonDataKinds.Phone.TYPE,
                                             ContactsContract.CommonDataKinds.Phone.TYPE_HOME)
                                     .build());
                         }
 
                         //------------------------------------------------------ Home Numbers
-                        if (!TextUtils.isEmpty(finalPhone2) && finalPhone2.length()==7) {
+                        if (!TextUtils.isEmpty(finalPhone2) && finalPhone2.length() == 7) {
                             ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
                                     .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
                                     .withValue(ContactsContract.Data.MIMETYPE,
@@ -332,7 +330,7 @@ public class DetailCostumer extends AppCompatActivity {
 
 
                         //------------------------------------------------------ Home Numbers
-                        if (!TextUtils.isEmpty(finalPhone3) && finalPhone3.length()==7) {
+                        if (!TextUtils.isEmpty(finalPhone3) && finalPhone3.length() == 7) {
                             ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
                                     .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
                                     .withValue(ContactsContract.Data.MIMETYPE,
@@ -383,6 +381,10 @@ public class DetailCostumer extends AppCompatActivity {
                     public void onClick(View arg0) {
                         Intent callIntent = new Intent(Intent.ACTION_CALL);
                         callIntent.setData(Uri.parse("tel:" + finalCell));
+                        if (ActivityCompat.checkSelfPermission(arg0.getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            Toast.makeText(DetailCostumer.this, "No tiene permisos para llamar", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         startActivity(callIntent);
                     }
                 });
