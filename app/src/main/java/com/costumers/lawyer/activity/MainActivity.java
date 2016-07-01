@@ -1,18 +1,23 @@
 package com.costumers.lawyer.activity;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.ContentProviderOperation;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +33,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.costumers.lawyer.Manifest;
 import com.costumers.lawyer.R;
 import com.costumers.lawyer.data.DataBaseManager;
 import com.costumers.lawyer.entities.Persons;
@@ -49,9 +55,15 @@ public class MainActivity extends AppCompatActivity {
     private DataBaseManager manager;
     RestService restService;
     ProgressDialog dialog =null;
+    private Context context;
+    private Activity activity;
+    private static final int PERMISSION_REQUEST_CODE = 1;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        context = getApplicationContext();
+        activity = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -75,6 +87,27 @@ public class MainActivity extends AppCompatActivity {
         }
         manager.Close(this);
         //refreshScreen();
+
+        if (!checkPermissionContact()) {
+
+            requestPermissionContact();
+
+        } else {
+
+            Toast.makeText(MainActivity.this, "Tiene permisos para los contactos", Toast.LENGTH_LONG).show();
+
+        }
+
+        if (!checkPermissionCall()) {
+
+            requestPermissionCall();
+
+        } else {
+
+            Toast.makeText(MainActivity.this, "Tiene permisos de llamada", Toast.LENGTH_LONG).show();
+
+        }
+
 
     }
 
@@ -404,6 +437,75 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
 
+    }
+
+    private boolean checkPermissionContact(){
+        int result = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_CONTACTS);
+        if (result == PackageManager.PERMISSION_GRANTED){
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+    }
+
+    private void requestPermissionContact(){
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity,Manifest.permission.WRITE_CONTACTS)){
+
+            Toast.makeText(context,"Tiene permisos sobre los contactos",Toast.LENGTH_LONG).show();
+
+        } else {
+
+            ActivityCompat.requestPermissions(activity,new String[]{Manifest.permission.WRITE_CONTACTS},PERMISSION_REQUEST_CODE);
+        }
+    }
+
+
+    private boolean checkPermissionCall(){
+        int result = ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE);
+        if (result == PackageManager.PERMISSION_GRANTED){
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+    }
+
+    private void requestPermissionCall(){
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity,Manifest.permission.CALL_PHONE)){
+
+            Toast.makeText(context,"Tiene permisos sobre los contactos",Toast.LENGTH_LONG).show();
+
+        } else {
+
+            ActivityCompat.requestPermissions(activity,new String[]{Manifest.permission.CALL_PHONE},PERMISSION_REQUEST_CODE);
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    Toast.makeText(context,"Permisos generados",Toast.LENGTH_LONG).show();
+
+                } else {
+
+                    Toast.makeText(context,"Permisos no generados",Toast.LENGTH_LONG).show();
+
+                }
+                break;
+        }
     }
 
 
