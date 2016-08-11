@@ -41,6 +41,7 @@ public class DataBaseManager {
     public static String CN_maial2 = "maial2";
     public static String CN_Where= "Filter";
     public static String CN_ID="id";
+    public static String CN_START="start";
 
     public static final String CREATE_TABLE_PERSONS = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_PERSONS + "(" +
             CN_IdPerson + " TEXT, " +
@@ -65,7 +66,8 @@ public class DataBaseManager {
             CN_cell2 + " TEXT, " +
             CN_cell3 + " TEXT, " +
             CN_maial1 + " TEXT, " +
-            CN_maial2+ " TEXT);";
+            CN_maial2+ " TEXT, " +
+            CN_START + "TEXT);";
 
     public static final String CREATE_TABLE_FILTER = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_FILTER + "(" +
             CN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -330,6 +332,7 @@ public class DataBaseManager {
         valores.put(CN_cell3,persons.cell3);
         valores.put(CN_maial1,persons.maial1);
         valores.put(CN_maial2,persons.maial2);
+        valores.put(CN_START,persons.start);
         return valores;
     }
 

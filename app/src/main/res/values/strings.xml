@@ -33,6 +33,7 @@
     <string name="err_msg_lastname">Ingrese los apellidos</string>
     <string name="save_contacts">Guardar todos los contactos</string>
     <string name="source">Fuente: </string>
+    <string name="start">Fecha de inicio: </string>
 
     <string-array name="costumerstatus_array">
         <item>Estado del cliente</item>

@@ -22,17 +22,17 @@ public interface CostumerService {
     //So these are the list available in our WEB API and the methods look straight forward
 
     //i.e. http://localhost/api/institute/Students
-    @GET("/costumers")
+    @GET("/Costumers")
     public void getCostumers(Callback<List<Persons>> callback);
 
     //i.e. http://localhost/api/institute/Students/1
     //Get student record base on ID
-    @GET("/costumers")
+    @GET("/Costumers")
     public void getCostumerById(@Query("IdPerson") Integer IdPerson,Callback<List<Persons>> callback);
 
     //i.e. http://localhost/api/institute/Students
     //Add student record and post content in HTTP request BODY
-    @POST("/costumers")
+    @POST("/Costumers")
     public void addCostumer(@Body Persons person, Callback<Integer> callback);
 
     @POST("/costumers")

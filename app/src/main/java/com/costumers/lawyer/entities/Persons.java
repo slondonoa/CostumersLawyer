@@ -28,6 +28,7 @@ public class Persons {
     public String cell3;
     public String maial1;
     public String maial2;
+    public String start;
 
     public String getCostumerFilter() {
         return Name;

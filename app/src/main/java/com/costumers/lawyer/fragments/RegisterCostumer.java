@@ -41,7 +41,7 @@ import retrofit.client.Response;
 public class RegisterCostumer extends Fragment  {
 
     private DataBaseManager manager;
-    private TextView txtDocument, txtName, txtLastName, txtCell,txtCell2, txtPhone, txtobservations,txtlastcontac,txtLimitDate, txtEmail;
+    private TextView txtDocument, txtName, txtLastName, txtCell,txtCell2, txtPhone, txtobservations,txtlastcontac,txtLimitDate, txtEmail, txtStart;
     private Spinner spProcessed, spCostumersatatus, spProcessstatus,spSource;
     private TextInputLayout textInputLayoutDocument,textInputLayoutName,textInputLayoutLastName;
     ProgressDialog dialog =null;
@@ -86,6 +86,8 @@ public class RegisterCostumer extends Fragment  {
         textInputLayoutDocument=(TextInputLayout) view.findViewById(R.id.textInputLayoutDocument);
         textInputLayoutName=(TextInputLayout) view.findViewById(R.id.textInputLayoutName);
         textInputLayoutLastName=(TextInputLayout) view.findViewById(R.id.textInputLayoutLastName);
+        txtStart=(TextView)view.findViewById(R.id.txtstart);
+
         final Button btnsave=(Button)view.findViewById(R.id.btnsave);
         txtDocument.addTextChangedListener(new TextWatcher() {
 
@@ -193,6 +195,43 @@ public class RegisterCostumer extends Fragment  {
         });
 
 
+        ImageButton btnstart=(ImageButton)view.findViewById(R.id.btnstart);
+        btnstart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                                int _monthOfYear=monthOfYear+1;
+                                String month= String.valueOf(_monthOfYear);
+                                if (month.length()==1)
+                                {
+                                    month="0"+month;
+                                }
+                                String day= String.valueOf(dayOfMonth);
+                                if (day.length()==1)
+                                {
+                                    day="0"+day;
+                                }
+                                String date = year+"/"+ month +"/"+ day ;
+                                txtStart.setText(date);
+                            }
+                        },
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)
+                );
+                dpd.setThemeDark(false);
+                dpd.vibrate(false);
+                dpd.setTitle("Fecha de inicio");
+                dpd.setAccentColor(Color.parseColor("#125688"));
+                dpd.show(getFragmentManager(), "Datepickerdialog");
+            }
+        });
+
+
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +252,7 @@ public class RegisterCostumer extends Fragment  {
                     String strSource = spSource.getSelectedItem().toString().trim();
                     String strLimitDate = txtLimitDate.getText().toString().trim();
                     String strLatContact = txtlastcontac.getText().toString().trim();
+                    String strStart = txtStart.getText().toString().trim();
 
                     final Persons persons = new Persons();
                     persons.Document = strDocument;
@@ -238,6 +278,7 @@ public class RegisterCostumer extends Fragment  {
 
                     persons.LimitDateProcessStatus = strLimitDate;
                     persons.lastContact = strLatContact;
+                    persons.start=strStart;
                     restService = new RestService();
                     restService.getService().addCostumer(persons, new Callback<Integer>() {
                         @Override
