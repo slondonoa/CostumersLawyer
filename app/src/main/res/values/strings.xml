@@ -34,6 +34,7 @@
     <string name="save_contacts">Guardar todos los contactos</string>
     <string name="source">Fuente: </string>
     <string name="start">Fecha de inicio: </string>
+    <string name="start_">Fecha de inicio</string>
 
     <string-array name="costumerstatus_array">
         <item>Estado del cliente</item>

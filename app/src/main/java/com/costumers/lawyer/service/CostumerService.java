@@ -35,7 +35,7 @@ public interface CostumerService {
     @POST("/Costumers")
     public void addCostumer(@Body Persons person, Callback<Integer> callback);
 
-    @POST("/costumers")
+    @POST("/Costumers")
     public void EditCostumer(@Body Persons student,@Query("idperson") Integer idperson, Callback<Boolean> callback);
 
 }

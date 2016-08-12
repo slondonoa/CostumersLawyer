@@ -93,11 +93,19 @@ public class filteredCostumer extends Fragment implements SearchView.OnQueryText
                         datestr = persons.lastContact.substring(0, 10);
                     }
                 }
-            }else {
+            }else if(where.contains("LimitDateProcessStatus")) {
                 datestr="Sin fecha limite";
                 if (persons.LimitDateProcessStatus != null) {
                     if (persons.LimitDateProcessStatus.length() >= 10) {
                         datestr = persons.LimitDateProcessStatus.substring(0, 10);
+                    }
+                }
+
+            }else if(where.contains("DateStart")) {
+                datestr="Sin fecha de inicio";
+                if (persons.start != null) {
+                    if (persons.start.length() >= 10) {
+                        datestr = persons.start.substring(0, 10);
                     }
                 }
 

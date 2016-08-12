@@ -175,7 +175,7 @@ public class FilterFragment extends Fragment implements OnClickListener  {
                 where=" ORDER BY lastContact ASC ";
                 save=true;
             }
-        }else {
+        }else if(radio.equals("Fecha limite")) {
 
             if(save)
             {
@@ -183,6 +183,16 @@ public class FilterFragment extends Fragment implements OnClickListener  {
             }else
             {
                 where=" ORDER BY LimitDateProcessStatus ASC ";
+                save=true;
+            }
+        }else if(radio.equals("Fecha de inicio")) {
+
+            if(save)
+            {
+                where=where + " ORDER BY DateStart ASC ";
+            }else
+            {
+                where=" ORDER BY DateStart ASC ";
                 save=true;
             }
         }

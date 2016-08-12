@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Connection extends SQLiteOpenHelper {
 
     private  static final String DB_NAME="ClientsLawyers.sqlite";
-    private static final  int DB_CHEMA_VERSION=2;
+    private static final  int DB_CHEMA_VERSION=3;
 
     public Connection(Context context) {
         super(context, DB_NAME, null, DB_CHEMA_VERSION);
@@ -24,6 +24,8 @@ public class Connection extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + DataBaseManager.TABLE_NAME_PERSONS);
+        db.execSQL("DROP TABLE IF EXISTS " + DataBaseManager.TABLE_NAME_FILTER);
         onCreate(db);
     }
 

@@ -47,7 +47,7 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
     RestService restService;
     ProgressDialog dialog =null;
     private int _IdPerson=0;
-    private TextView txtDocument, txtName, txtLastName, txtCell,txtCell2, txtPhone, txtobservations,txtlastcontac,txtLimitDate, txtEmail;
+    private TextView txtDocument,txtStart, txtName, txtLastName, txtCell,txtCell2, txtPhone, txtobservations,txtlastcontac,txtLimitDate, txtEmail;
     private TextInputLayout textInputLayoutName,textInputLayoutLastName;
     private Spinner spProcessed, spCostumersatatus, spProcessstatus, spSource;
     View view;
@@ -101,6 +101,7 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
         spProcessed = (Spinner) view.findViewById(R.id.spProcessed);
         txtlastcontac=(TextView) view.findViewById(R.id.txtLastcontac);
         txtLimitDate=(TextView) view.findViewById(R.id.txtLimitprocess);
+        txtStart=(TextView)view.findViewById(R.id.txtstart);
 
         String[] arrayListprocessstatus = getResources().getStringArray(R.array.processstatus_array);
         ArrayAdapter<String> arrayAdapterprocessstatus = new ArrayAdapter<String>(
@@ -200,6 +201,42 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
             }
         });
 
+        ImageButton btnstart=(ImageButton)view.findViewById(R.id.btnstart);
+        btnstart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                                int _monthOfYear=monthOfYear+1;
+                                String month= String.valueOf(_monthOfYear);
+                                if (month.length()==1)
+                                {
+                                    month="0"+month;
+                                }
+                                String day= String.valueOf(dayOfMonth);
+                                if (day.length()==1)
+                                {
+                                    day="0"+day;
+                                }
+                                String date = year+"/"+ month +"/"+ day ;
+                                txtStart.setText(date);
+                            }
+                        },
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)
+                );
+                dpd.setThemeDark(false);
+                dpd.vibrate(false);
+                dpd.setTitle("Fecha de inicio");
+                dpd.setAccentColor(Color.parseColor("#125688"));
+                dpd.show(getFragmentManager(), "Datepickerdialog");
+            }
+        });
+
 
         Button btnsave=(Button)view.findViewById(R.id.btnsave);
         btnsave.setOnClickListener(new View.OnClickListener() {
@@ -222,6 +259,7 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
                     String strProcessed = spProcessed.getSelectedItem().toString().trim();
                     String strLimitDate = txtLimitDate.getText().toString().trim();
                     String strLatContact = txtlastcontac.getText().toString().trim();
+                    String strStart = txtStart.getText().toString().trim();
 
                     final Persons persons = new Persons();
                     persons.Document = strDocument;
@@ -248,6 +286,7 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
                     }
                     persons.LimitDateProcessStatus = strLimitDate;
                     persons.lastContact = strLatContact;
+                    persons.start=strStart;
                     persons.IdPerson=idperson;
                     restService = new RestService();
                     restService.getService().EditCostumer(persons, Integer.parseInt(idperson), new Callback<Boolean>() {
@@ -399,6 +438,7 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
 
                             txtlastcontac.setText(person.lastContact);
                             txtLimitDate.setText(person.LimitDateProcessStatus);
+                            txtStart.setText(person.start);
                         }
                         if (dialog != null) {
                             dialog.cancel();

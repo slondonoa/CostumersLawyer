@@ -167,7 +167,7 @@
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:rowCount="2"
+                android:rowCount="3"
                 android:columnCount="3"
                 android:orientation="horizontal"
                 android:clickable="false"
@@ -227,6 +227,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"/>
+
+                <TextView
+                    android:id="@+id/lblStart"
+                    android:textColor="@color/Name"
+                    android:textSize="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/start"
+                    android:layout_marginTop="15dp"/>
+
+                <ImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:id="@+id/btnstart"
+                    android:adjustViewBounds="false"
+                    android:background="@mipmap/ic_calendar"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/txtstart"
+                    android:textColor="@color/Name"
+                    android:textSize="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"/>
+
+
             </GridLayout>
 
 

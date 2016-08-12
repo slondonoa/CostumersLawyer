@@ -87,6 +87,7 @@ public class DetailCostumer extends AppCompatActivity {
         TextView tvcell2 = (TextView) findViewById(R.id.txtCell2);
         TextView tvcell3 = (TextView) findViewById(R.id.txtCell3);
         TextView tvSource = (TextView) findViewById(R.id.txtSource);
+        TextView tvStart = (TextView) findViewById(R.id.txtStart);
 
         manager = new DataBaseManager(this);
         manager.Open(DetailCostumer.this);
@@ -180,6 +181,11 @@ public class DetailCostumer extends AppCompatActivity {
                 mail = persons.maial1.trim();
             }
 
+            String start = "";
+            if (persons.start != null) {
+                start = persons.start;
+            }
+
             tvDocument.setText(document);
             tvName.setText(name);
             tvLastName.setText(lastname);
@@ -191,6 +197,7 @@ public class DetailCostumer extends AppCompatActivity {
             tvLastcontact.setText(last);
             tvObservations.setText(observations);
             tvSource.setText(source);
+            tvStart.setText(start);
 
             imbedit = (ImageButton) findViewById(R.id.ibedit);
             imbedit.setVisibility(View.VISIBLE);
