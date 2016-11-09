@@ -189,10 +189,10 @@ public class FilterFragment extends Fragment implements OnClickListener  {
 
             if(save)
             {
-                where=where + " ORDER BY DateStart ASC ";
+                where=where + " ORDER BY DateStart DESC ";
             }else
             {
-                where=" ORDER BY DateStart ASC ";
+                where=" ORDER BY DateStart DESC ";
                 save=true;
             }
         }
