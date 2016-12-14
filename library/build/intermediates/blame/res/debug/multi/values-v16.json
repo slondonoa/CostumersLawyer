@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\REPOSITORY\\CostumersLawyer\\library\\build\\intermediates\\res\\merged\\debug\\values-v16\\values-v16.xml",
+        "outputFile": "D:\\GIT\\CostumersLawyer\\library\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 148
                 },
                 "from": {
-                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-v16\\strings.xml",
+                    "file": "D:\\GIT\\CostumersLawyer\\library\\src\\main\\res\\values-v16\\strings.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
@@ -31,7 +31,7 @@
                     "endOffset": 281
                 },
                 "from": {
-                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-v16\\styles.xml",
+                    "file": "D:\\GIT\\CostumersLawyer\\library\\src\\main\\res\\values-v16\\styles.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 4,
@@ -52,7 +52,7 @@
                     "endOffset": 400
                 },
                 "from": {
-                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-v16\\styles.xml",
+                    "file": "D:\\GIT\\CostumersLawyer\\library\\src\\main\\res\\values-v16\\styles.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
@@ -73,7 +73,7 @@
                     "endOffset": 517
                 },
                 "from": {
-                    "file": "D:\\REPOSITORY\\CostumersLawyer\\library\\src\\main\\res\\values-v16\\styles.xml",
+                    "file": "D:\\GIT\\CostumersLawyer\\library\\src\\main\\res\\values-v16\\styles.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
