@@ -4,17 +4,15 @@ package com.costumers.lawyer.service;
 /**
  * Created by Tan on 6/26/2015.
  */
+import com.costumers.lawyer.entities.Event;
 import com.costumers.lawyer.entities.Persons;
 
 import java.util.List;
 
 import retrofit.Callback;
 import retrofit.http.Body;
-import retrofit.http.DELETE;
 import retrofit.http.GET;
 import retrofit.http.POST;
-import retrofit.http.PUT;
-import retrofit.http.Path;
 import retrofit.http.Query;
 
 public interface CostumerService {
@@ -37,5 +35,8 @@ public interface CostumerService {
 
     @POST("/Costumers")
     public void EditCostumer(@Body Persons student,@Query("idperson") Integer idperson, Callback<Boolean> callback);
+
+    @GET("/GetEvents")
+    public void getEvents(Callback<List<Event>> callback);
 
 }

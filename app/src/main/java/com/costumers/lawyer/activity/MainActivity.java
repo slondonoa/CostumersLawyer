@@ -37,6 +37,7 @@ import com.costumers.lawyer.Manifest;
 import com.costumers.lawyer.R;
 import com.costumers.lawyer.data.DataBaseManager;
 import com.costumers.lawyer.entities.Persons;
+import com.costumers.lawyer.fragments.Calendar;
 import com.costumers.lawyer.fragments.FilterFragment;
 import com.costumers.lawyer.fragments.OneFragment;
 import com.costumers.lawyer.service.RestService;
@@ -156,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         RegisterCostumer=new RegisterCostumer();
 
         adapter.addFrag(RegisterCostumer, "Registro");
-        adapter.addFrag(new OneFragment(), "Calendario");
+        adapter.addFrag(new Calendar(), "Calendario");
         //app:tabMode="scrollable"
         viewPager.setAdapter(adapter);
     }
