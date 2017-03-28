@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.costumers.lawyer.R;
@@ -47,14 +48,16 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
     }
 
     public static class CalendarViewHolder extends RecyclerView.ViewHolder{
-        public TextView name, description, startDate,id;
+        public TextView name, description, startDate,id,typeEvent;
+        public LinearLayout Ltype;
 
         public CalendarViewHolder(final View view) {
             super(view);
-            name = (TextView) view.findViewById(R.id.txtName);
+            typeEvent = (TextView) view.findViewById(R.id.Type);
             description = (TextView) view.findViewById(R.id.txtDescription);
             startDate = (TextView) view.findViewById(R.id.txtstrStartDate);
             id= (TextView) view.findViewById(R.id.txtId);
+            Ltype=(LinearLayout) view.findViewById(R.id.Ltype);
 
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -68,10 +71,26 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
         }
 
         public void bind(EventAdapter model) {
-            name.setText(model.getFullName());
+            typeEvent.setText(model.getTypeEvent());
             description.setText(model.getDescription());
-            startDate.setText(model.getStrStartDate());
+
+            startDate.setText(model.getStartDate() + " * " +model.getStrStartDate() + " / "+model.getStrEndDate());
             id.setText(model.getId());
+            String type=model.getTypeEvent();
+            if (type=="Cita")
+            {
+                Ltype.setBackgroundResource(R.drawable.type1);
+            }else if (type=="Audiencia")
+            {
+                Ltype.setBackgroundResource(R.drawable.type2);
+            }else if (type=="Vencimiento")
+            {
+                Ltype.setBackgroundResource(R.drawable.type3);
+            }else
+            {
+                Ltype.setBackgroundResource(R.drawable.type4);
+            }
+
         }
     }
 

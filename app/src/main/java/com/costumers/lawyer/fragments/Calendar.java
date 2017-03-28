@@ -27,8 +27,13 @@ import com.costumers.lawyer.entities.Event;
 import com.costumers.lawyer.entities.EventAdapter;
 import com.costumers.lawyer.service.RestService;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -94,10 +99,44 @@ public class Calendar extends Fragment{
                             }else {
                                 name = event.FullName;
                             }
+                            switch (event.TypeEvent) {
+                                case "1":
+                                    event.TypeEvent="Cita";
+                                    break;
+                                case "2":
+                                    event.TypeEvent="Audiencia";
+                                    break;
+                                case "3":
+                                    event.TypeEvent="Vencimiento";
+                                    break;
+                                case "4":
+                                    event.TypeEvent="Otros";
+                            }
 
 
-                            EventAdapter pa=new EventAdapter(event.Id,event.TypeEvent,event.Description,event.Customer,event.StartDate
-                                    ,event.EndDate,event.Title,event.Executed,name.toUpperCase(),event.strStartDate,event.strEndDate);
+
+                            String strStartDate="";
+                            String strStrartHour="";
+                            try {
+                                strStartDate=event.StartDate.split("T")[0];
+                                strStrartHour=event.strStartDate.split(" ")[1] + " " +event.strStartDate.split(" ")[2];
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            Date endDate=new Date();
+                            String strEndDate="";
+                            String strEndHour="";
+                            try {
+                                strEndDate=event.StartDate.split("T")[0];
+                                strEndHour=event.strStartDate.split(" ")[1] + " "+event.strStartDate.split(" ")[2] ;
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+
+                            EventAdapter pa=new EventAdapter(event.Id,event.TypeEvent,event.Description,event.Customer,strStartDate
+                                    ,strEndDate,event.Title,event.Executed,name.toUpperCase(),strStrartHour,strEndHour);
                             mEvents.add(pa);
 
                         }
