@@ -14,6 +14,7 @@ import com.costumers.lawyer.entities.EventAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Attributes;
 
 /**
  * Created by GL552VW-DM337T on 23/03/2017.
@@ -48,13 +49,14 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
     }
 
     public static class CalendarViewHolder extends RecyclerView.ViewHolder{
-        public TextView name, description, startDate,id,typeEvent;
+        public TextView name, title, startDate,id,typeEvent;
         public LinearLayout Ltype;
 
         public CalendarViewHolder(final View view) {
             super(view);
-            typeEvent = (TextView) view.findViewById(R.id.Type);
-            description = (TextView) view.findViewById(R.id.txtDescription);
+            typeEvent = (TextView) view.findViewById(R.id.txtType);
+            name = (TextView) view.findViewById(R.id.txtName);
+            title = (TextView) view.findViewById(R.id.txtTitle);
             startDate = (TextView) view.findViewById(R.id.txtstrStartDate);
             id= (TextView) view.findViewById(R.id.txtId);
             Ltype=(LinearLayout) view.findViewById(R.id.Ltype);
@@ -72,7 +74,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
 
         public void bind(EventAdapter model) {
             typeEvent.setText(model.getTypeEvent());
-            description.setText(model.getDescription());
+            name.setText(model.getFullName());
+            title.setText(model.getTitle());
 
             startDate.setText(model.getStartDate() + " * " +model.getStrStartDate() + " / "+model.getStrEndDate());
             id.setText(model.getId());

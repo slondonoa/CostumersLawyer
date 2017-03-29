@@ -37,6 +37,6 @@ public interface CostumerService {
     public void EditCostumer(@Body Persons student,@Query("idperson") Integer idperson, Callback<Boolean> callback);
 
     @GET("/GetEvents")
-    public void getEvents(Callback<List<Event>> callback);
+    public void getEvents(@Query("type") String type,@Query("date") String date,@Query("client") String client,@Query("id") String id,Callback<List<Event>> callback);
 
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.costumers.lawyer.entities.Customer;
 import com.costumers.lawyer.entities.Persons;
 
 import java.util.ArrayList;
@@ -257,6 +258,33 @@ public class DataBaseManager {
 // return contact list
         return PersonsList;
     }
+
+
+    public ArrayList<Customer> getAllPersonsVector() {
+        ArrayList<Customer> PersonsList = new ArrayList<Customer>();
+// Select All Query
+        String selectQuery = "SELECT * FROM " + TABLE_NAME_PERSONS +" ORDER BY " + CN_Name + ", " +CN_LastName;
+        //Cursor cursor =db.query(TABLE_NAME_PERSONS,new String[]{CN_IdPerson,CN_birthdate},null,null,null,null,null); //db.rawQuery(selectQuery, null);
+        Cursor cursor =db.rawQuery(selectQuery, null);
+        PersonsList.add(new Customer("0","Cliente"));
+// looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                // Adding contact to list
+
+                String Id=cursor.getString(cursor.getColumnIndex(CN_IdPerson));
+                String name=cursor.getString(cursor.getColumnIndex(CN_Name)) + " "+cursor.getString(cursor.getColumnIndex(CN_LastName));
+                PersonsList.add(new Customer(Id,name));
+            } while (cursor.moveToNext());
+
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+// return contact list
+        return PersonsList;
+    }
+
 
     public List<Persons> getValidatePersons() {
         List<Persons> PersonsList = new ArrayList<Persons>();

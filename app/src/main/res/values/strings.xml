@@ -35,6 +35,8 @@
     <string name="source">Fuente: </string>
     <string name="start">Fecha de inicio: </string>
     <string name="start_">Fecha de inicio</string>
+    <string name="date">Fecha</string>
+    <string name="filter">Filtrar</string>
 
     <string-array name="costumerstatus_array">
         <item>Estado del cliente</item>
@@ -103,6 +105,14 @@
         <item>Radio</item>
         <item>Referido</item>
         <item>Tramitador</item>
+    </string-array>
+
+    <string-array name="type_event">
+        <item>Tipo</item>
+        <item>Cita</item>
+        <item>Audiencia</item>
+        <item>Vencimiento</item>
+        <item>Otros</item>
     </string-array>
 
 </resources>

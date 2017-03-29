@@ -9,25 +9,109 @@
     android:weightSum="1"
     tools:context=".activity.MainActivity"
     android:background="@color/grey">
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:layout_weight="2">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical"
+        android:id="@+id/LinerFilter">
+
+        <GridLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rowCount="3"
+            android:columnCount="4"
+            android:orientation="horizontal"
+            android:clickable="false"
+            android:id="@+id/costumer_detail_container"
             android:layout_marginLeft="5dp"
-            android:orientation="vertical">
+            android:paddingLeft="10dp"
+            >
+            <TextView
+                android:id="@+id/lblDate"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:layout_marginTop="15dp"/>
+
+            <ImageButton
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:id="@+id/btnDate"
+                android:adjustViewBounds="false"
+                android:background="@mipmap/ic_calendar"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/txtDate"
+                android:textColor="@color/Name"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"/>
+            <ImageButton
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:id="@+id/btnNoDate"
+                android:adjustViewBounds="false"
+                android:background="@mipmap/ic_close"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"/>
+        </GridLayout>
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/spTypeEvent"
+            ></android.support.v7.widget.AppCompatSpinner>
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/spCustomers"
+            ></android.support.v7.widget.AppCompatSpinner>
+
+        <Button android:text="@string/filter"
+            android:id="@+id/btnFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"/>
 
 
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:orientation="vertical">
+
+    <ImageButton
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:id="@+id/btnFilterDown"
+        android:background="@mipmap/ic_down"
+        android:layout_gravity="right"/>
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:id="@+id/btnFilterUp"
+            android:background="@mipmap/ic_up"
+            android:layout_gravity="right"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/txtfilter"
+        android:textColor="@color/LastContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp"/>
+        android:layout_marginTop="16dp"/>
 
 </LinearLayout>
