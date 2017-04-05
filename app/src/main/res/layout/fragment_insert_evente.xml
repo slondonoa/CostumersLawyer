@@ -1,0 +1,168 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    tools:context=".activity.EditCostumer"
+    >
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:layout_weight="1"
+            android:padding="16dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+
+                <GridLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:rowCount="3"
+                    android:columnCount="5"
+                    android:orientation="horizontal"
+                    android:clickable="false"
+                    android:id="@+id/costumer_detail_container"
+                    android:layout_marginLeft="5dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/lblStartDate"
+                        android:textColor="@color/Name"
+                        android:textSize="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/limitprocess"
+                        android:layout_marginTop="15dp"/>
+
+                    <ImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:id="@+id/btnSatartDate"
+                        android:adjustViewBounds="false"
+                        android:background="@mipmap/ic_calendar"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"/>
+
+                    <ImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:id="@+id/btnSatarTimetDate"
+                        android:adjustViewBounds="false"
+                        android:background="@mipmap/ic_time"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"/>
+
+                    <TextView
+                        android:id="@+id/txtStarDate"
+                        android:textColor="@color/Name"
+                        android:textSize="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"/>
+
+                    <TextView
+                        android:id="@+id/txtStarTimeDate"
+                        android:textColor="@color/Name"
+                        android:textSize="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"/>
+
+                    <TextView
+                        android:id="@+id/lblEndDate"
+                        android:textColor="@color/Name"
+                        android:textSize="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/limitprocess"
+                        android:layout_marginTop="15dp"/>
+
+                    <ImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:id="@+id/btnEndDate"
+                        android:adjustViewBounds="false"
+                        android:background="@mipmap/ic_calendar"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"/>
+
+                    <ImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:id="@+id/btnEndTimeDate"
+                        android:adjustViewBounds="false"
+                        android:background="@mipmap/ic_time"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"/>
+
+                    <TextView
+                        android:id="@+id/txtEndDate"
+                        android:textColor="@color/Name"
+                        android:textSize="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/txtEndTimeDate"
+                        android:textColor="@color/Name"
+                        android:textSize="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"/>
+                </GridLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutDocument"
+                    >
+                    <EditText android:id="@+id/txtDocument"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/document"
+                        android:numeric="integer"
+                        android:inputType="number"/>
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="16dp">
+            <Button android:text="guardar"
+                android:id="@+id/btnsave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
+

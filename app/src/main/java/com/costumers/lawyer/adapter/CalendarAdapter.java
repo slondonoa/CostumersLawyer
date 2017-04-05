@@ -1,7 +1,10 @@
 package com.costumers.lawyer.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.DateTimeKeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +15,14 @@ import android.widget.TextView;
 import com.costumers.lawyer.R;
 import com.costumers.lawyer.entities.EventAdapter;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import java.util.jar.Attributes;
 
 /**
@@ -51,6 +60,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
     public static class CalendarViewHolder extends RecyclerView.ViewHolder{
         public TextView name, title, startDate,id,typeEvent;
         public LinearLayout Ltype;
+        public CardView cardView;
 
         public CalendarViewHolder(final View view) {
             super(view);
@@ -60,6 +70,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
             startDate = (TextView) view.findViewById(R.id.txtstrStartDate);
             id= (TextView) view.findViewById(R.id.txtId);
             Ltype=(LinearLayout) view.findViewById(R.id.Ltype);
+            cardView=(CardView)view.findViewById(R.id.cv);
 
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +104,53 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
             {
                 Ltype.setBackgroundResource(R.drawable.type4);
             }
+
+            if(model.getExecuted()=="true")
+            {
+                cardView.setCardBackgroundColor(Color.argb(25,76,175, 80));
+            }
+            else {
+                    //Format of the date defined in the input String
+                    DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
+                    //Desired format: 24 hour format: Change the pattern as per the need
+                    DateFormat outputformat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+                    Date dateEvent = null;
+                    String output = null;
+                    try{
+                        //Converting the input String to Date
+                        dateEvent= df.parse(model.getStartDate().toString() + " "+model.getStrStartDate().toString());
+                        //Changing the format of date and storing it in String
+                        output = outputformat.format(dateEvent);
+                        //Displaying the date
+                        System.out.println(output);
+                    }catch(ParseException pe){
+                        pe.printStackTrace();
+                    }
+
+                    java.util.Date getDate= new Date();
+                    java.util.Calendar cal = java.util.Calendar.getInstance();
+                    cal.setTime(getDate);
+
+                    long diff = dateEvent.getTime() - getDate.getTime();//as given
+                    long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
+                    if(minutes > 0)
+                    {
+                        if (minutes <= 30)
+                        {
+                            cardView.setCardBackgroundColor(Color.argb(25,244,67, 54));
+                        }
+                    }
+                    else{
+                        cardView.setCardBackgroundColor(Color.argb(25,255,193, 7));
+                    }
+
+            }
+
+
+            //Validaciones para colocar colora als cards
+            /*
+
+            */
 
         }
     }

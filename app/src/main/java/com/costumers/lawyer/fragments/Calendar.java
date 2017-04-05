@@ -7,16 +7,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Interpolator;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.AlarmClock;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -27,6 +31,7 @@ import android.widget.Toast;
 
 import com.costumers.lawyer.R;
 import com.costumers.lawyer.activity.DetailCostumer;
+import com.costumers.lawyer.activity.InsertEventCalendar;
 import com.costumers.lawyer.activity.MainActivity;
 import com.costumers.lawyer.adapter.CalendarAdapter;
 import com.costumers.lawyer.adapter.CostumerAdapter;
@@ -65,9 +70,9 @@ public class Calendar extends Fragment{
     private List<EventAdapter> mEvents;
     ProgressDialog dialog =null;
     RestService restService;
-    private Spinner spTypeEvent;
-    private Spinner spCustomers;
+    private Spinner spTypeEvent, spCustomers, spStatus;
     private TextView txtdate,txtfilter;
+    boolean click = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,6 +87,8 @@ public class Calendar extends Fragment{
 
         spTypeEvent = (Spinner) view.findViewById(R.id.spTypeEvent);
         spCustomers = (Spinner) view.findViewById(R.id.spCustomers);
+        spStatus = (Spinner) view.findViewById(R.id.spStatus);
+
 
         String[] arrayListprocessstatus = getResources().getStringArray(R.array.type_event);
         ArrayAdapter<String> arrayAdapterTypeEvent = new ArrayAdapter<String>(
@@ -96,6 +103,52 @@ public class Calendar extends Fragment{
                 lstPersons );
 
         spCustomers.setAdapter(arrayAdapterCustomers);
+
+        String[] arrayStatus = getResources().getStringArray(R.array.event_status);
+        ArrayAdapter<String> arrayAdapterStatus = new ArrayAdapter<String>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                arrayStatus );
+        spStatus.setAdapter(arrayAdapterStatus);
+
+        spStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectStatus=parentView.getItemAtPosition(position).toString();
+                if(!selectStatus.equals("Dia")){
+                    txtdate=(TextView) view.findViewById(R.id.txtDate);
+                    txtdate.setText("");
+                }else {
+                    java.util.Date date= new Date();
+                    java.util.Calendar cal = java.util.Calendar.getInstance();
+                    cal.setTime(date);
+                    String month = String.valueOf(cal.get(java.util.Calendar.MONTH));
+                    String day = String.valueOf(cal.get(java.util.Calendar.DATE));
+                    String year = String.valueOf(cal.get(java.util.Calendar.YEAR));
+                    if (month.length()==1)
+                    {
+                        int montemp=Integer.parseInt(month)+1;
+                        month="0"+montemp;
+                    }else {
+                        int montemp=Integer.parseInt(month)+1;
+                        month=String.valueOf(montemp);
+                    }
+                    if (day.length()==1)
+                    {
+                        day="0"+day;
+                    }
+
+                    String dateCal = year + "/" + month + "/" + day;
+                    txtdate.setText(dateCal);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
 
 
         ImageButton btndate=(ImageButton)view.findViewById(R.id.btnDate);
@@ -207,6 +260,16 @@ public class Calendar extends Fragment{
             }
         });
 
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+                intent = new Intent(getActivity(), InsertEventCalendar.class);
+                startActivity(intent);
+            }
+        });
+
 
         return view;
 
@@ -266,7 +329,10 @@ public class Calendar extends Fragment{
                     clienID=client.getId().toString();
                 }
                 String id=null;
-                restService.getService().getEvents(type,date,clienID,id,new Callback<List<Event>>() {
+                spStatus = (Spinner) getActivity().findViewById(R.id.spStatus);
+                String selectStatus=spStatus.getSelectedItem().toString();
+
+                restService.getService().getEvents(type,date,clienID,id,selectStatus,new Callback<List<Event>>() {
                     @Override
                     public void success(List<Event> events, Response response) {
                         mEvents = new ArrayList<>();
@@ -303,7 +369,7 @@ public class Calendar extends Fragment{
                             String strStartDate="";
                             String strStrartHour="";
                             try {
-                                strStartDate=event.StartDate.split("T")[0];
+                                strStartDate=event.strStartDate.split(" ")[0];
                                 strStrartHour=event.strStartDate.split(" ")[1] + " " +event.strStartDate.split(" ")[2];
 
                             } catch (Exception e) {
@@ -313,12 +379,11 @@ public class Calendar extends Fragment{
                             String strEndDate="";
                             String strEndHour="";
                             try {
-                                strEndDate=event.StartDate.split("T")[0];
-                                strEndHour=event.strStartDate.split(" ")[1] + " "+event.strStartDate.split(" ")[2] ;
+                                strEndDate=event.EndDate.split("T")[0];
+                                strEndHour=event.strEndDate.split(" ")[1] + " "+event.strEndDate.split(" ")[2] ;
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-
 
                             EventAdapter pa=new EventAdapter(event.Id,event.TypeEvent,event.Description,event.Customer,strStartDate
                                     ,strEndDate,event.Title,event.Executed,name.toUpperCase(),strStrartHour,strEndHour);
@@ -338,11 +403,13 @@ public class Calendar extends Fragment{
                             dialog.cancel();
                         }
 
-                        String textFilter="";
+                        spStatus = (Spinner) getActivity().findViewById(R.id.spStatus);
+                        String selectStatus=spStatus.getSelectedItem().toString();
+                        String textFilter=selectStatus + " - ";
                         String dateFilter=txtdate.getText().toString();
                         if (!dateFilter.equals(""))
                         {
-                            textFilter="Fecha: "+dateFilter;
+                            textFilter=textFilter + "Fecha: "+dateFilter;
                         }
 
                         String type=spTypeEvent.getSelectedItem().toString();

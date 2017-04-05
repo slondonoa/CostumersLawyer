@@ -115,4 +115,10 @@
         <item>Otros</item>
     </string-array>
 
+    <string-array name="event_status">
+        <item>Dia</item>
+        <item>Reprogramar</item>
+        <item>Todas</item>
+    </string-array>
+
 </resources>

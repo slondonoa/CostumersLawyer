@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.costumers.lawyer">
 
-
     <permission android:name="android.permission.INTERNET" />
     <permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <permission android:name="android.permission.CALL_PHONE" />
@@ -17,9 +16,6 @@
     <uses-permission-sdk-23 android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission-sdk-23 android:name="android.permission.CALL_PHONE" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_CONTACTS" />
-
-
-
 
     <application
         android:allowBackup="true"
@@ -40,18 +36,19 @@
         <activity
             android:name=".activity.FilteredCustomers"
             android:parentActivityName=".activity.MainActivity"
-            android:windowSoftInputMode="adjustNothing"/>
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activity.DetailCostumer"
             android:label="@string/title_activity_detail_costumer"
             android:parentActivityName=".activity.FilteredCustomers"
             android:theme="@style/MyMaterialTheme"
-            android:windowSoftInputMode="adjustNothing"/>
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activity.EditCostumer"
             android:label="@string/title_activity_edit_costumer"
             android:theme="@style/MyMaterialTheme"
-            android:windowSoftInputMode="adjustNothing"></activity>
+            android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".activity.InsertEventCalendar"></activity>
     </application>
 
 </manifest>
