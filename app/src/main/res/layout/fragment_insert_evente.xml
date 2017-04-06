@@ -18,12 +18,7 @@
             android:background="?attr/colorPrimary"/>
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp"
-        android:orientation="vertical"
-        android:weightSum="1">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,7 +30,29 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutTitle"
+                    >
+                    <EditText android:id="@+id/txtTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Titulo:"/>
+                </android.support.design.widget.TextInputLayout>
 
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutDescription">
+                    <EditText android:id="@+id/txtDescription"
+                        android:hint="Descripción:"
+                        android:inputType="textMultiLine"
+                        android:gravity="top|left"
+                        android:layout_height="wrap_content"
+                        android:layout_width="fill_parent"
+                        android:scrollbars="vertical"/>
+                </android.support.design.widget.TextInputLayout>
 
                 <GridLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -127,26 +144,30 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"/>
                     <TextView
-                        android:id="@+id/txtEndTimeDate"
+                        android:id="@+id/txtEndTime"
                         android:textColor="@color/Name"
                         android:textSize="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"/>
                 </GridLayout>
-
-                <android.support.design.widget.TextInputLayout
+                <android.support.v7.widget.AppCompatSpinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textInputLayoutDocument"
-                    >
-                    <EditText android:id="@+id/txtDocument"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/document"
-                        android:numeric="integer"
-                        android:inputType="number"/>
-                </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/spTypeEvent"
+                    ></android.support.v7.widget.AppCompatSpinner>
+                <android.support.v7.widget.AppCompatSpinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/spCustomers"
+                    ></android.support.v7.widget.AppCompatSpinner>
+
+
+
+
+
 
 
             </LinearLayout>
@@ -163,6 +184,5 @@
                 android:layout_gravity="bottom"/>
         </LinearLayout>
 
-    </LinearLayout>
 </LinearLayout>
 

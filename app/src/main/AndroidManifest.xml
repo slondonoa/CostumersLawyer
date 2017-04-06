@@ -48,7 +48,13 @@
             android:label="@string/title_activity_edit_costumer"
             android:theme="@style/MyMaterialTheme"
             android:windowSoftInputMode="adjustNothing" />
-        <activity android:name=".activity.InsertEventCalendar"></activity>
+        <activity
+            android:name=".activity.InsertEventCalendar"
+            android:label="Insertar evento"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/MyMaterialTheme"
+            android:windowSoftInputMode="adjustNothing" />
+
     </application>
 
 </manifest>

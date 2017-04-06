@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-land\\mdtp_date_picker_dialog_v2.xml",
+        "source": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\bundles\\debug\\res\\layout-land\\mdtp_date_picker_dialog_v2.xml"
+    },
+    {
+        "merged": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-land\\mdtp_time_picker_dialog.xml",
+        "source": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\bundles\\debug\\res\\layout-land\\mdtp_time_picker_dialog.xml"
+    },
+    {
+        "merged": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-land\\mdtp_date_picker_header_view_v2.xml",
+        "source": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\bundles\\debug\\res\\layout-land\\mdtp_date_picker_header_view_v2.xml"
+    },
+    {
+        "merged": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-land\\mdtp_date_picker_dialog.xml",
+        "source": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\bundles\\debug\\res\\layout-land\\mdtp_date_picker_dialog.xml"
+    },
+    {
+        "merged": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-land\\mdtp_time_picker_dialog_v2.xml",
+        "source": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\bundles\\debug\\res\\layout-land\\mdtp_time_picker_dialog_v2.xml"
+    },
+    {
+        "merged": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-land\\mdtp_time_header_label.xml",
+        "source": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\bundles\\debug\\res\\layout-land\\mdtp_time_header_label.xml"
+    },
+    {
+        "merged": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-land\\mdtp_time_title_view_v2.xml",
+        "source": "D:\\GIT\\CostumersLawyer\\libraryTime\\build\\intermediates\\bundles\\debug\\res\\layout-land\\mdtp_time_title_view_v2.xml"
+    }
+]

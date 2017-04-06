@@ -2,6 +2,7 @@ package com.costumers.lawyer.fragments;
 
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -181,7 +182,8 @@ public class Calendar extends Fragment{
                 dpd.vibrate(false);
                 dpd.setTitle("Ultimo contacto");
                 dpd.setAccentColor(Color.parseColor("#125688"));
-                dpd.show(getFragmentManager(), "Datepickerdialog");
+                FragmentManager fm = getActivity().getFragmentManager();
+                dpd.show(fm, "Datepickerdialog");
             }
         });
 

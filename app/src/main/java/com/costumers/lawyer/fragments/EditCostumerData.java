@@ -2,6 +2,7 @@ package com.costumers.lawyer.fragments;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -40,7 +41,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class EditCostumerData extends android.support.v4.app.Fragment {
+public class EditCostumerData extends android.support.v4.app.Fragment  {
 
     private Toolbar toolbar;
     private DataBaseManager manager;
@@ -162,7 +163,8 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
                 dpd.vibrate(false);
                 dpd.setTitle("Ultimo contacto");
                 dpd.setAccentColor(Color.parseColor("#125688"));
-                dpd.show(getFragmentManager(), "Datepickerdialog");
+                FragmentManager fm = getActivity().getFragmentManager();
+                dpd.show(fm, "Datepickerdialog");
             }
         });
 
@@ -197,7 +199,8 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
                 dpd.vibrate(false);
                 dpd.setTitle("Fecha limite");
                 dpd.setAccentColor(Color.parseColor("#125688"));
-                dpd.show(getFragmentManager(), "Datepickerdialog");
+                FragmentManager fm = getActivity().getFragmentManager();
+                dpd.show(fm, "Datepickerdialog");
             }
         });
 
@@ -233,7 +236,8 @@ public class EditCostumerData extends android.support.v4.app.Fragment {
                 dpd.vibrate(false);
                 dpd.setTitle("Fecha de inicio");
                 dpd.setAccentColor(Color.parseColor("#125688"));
-                dpd.show(getFragmentManager(), "Datepickerdialog");
+                FragmentManager fm = getActivity().getFragmentManager();
+                dpd.show(fm, "Datepickerdialog");
             }
         });
 
