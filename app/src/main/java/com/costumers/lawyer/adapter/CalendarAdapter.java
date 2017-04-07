@@ -1,19 +1,30 @@
 package com.costumers.lawyer.adapter;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.text.method.DateTimeKeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.costumers.lawyer.R;
 import com.costumers.lawyer.entities.EventAdapter;
+import com.costumers.lawyer.service.RestService;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -24,6 +35,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.jar.Attributes;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by GL552VW-DM337T on 23/03/2017.
@@ -58,9 +73,11 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
     }
 
     public static class CalendarViewHolder extends RecyclerView.ViewHolder{
-        public TextView name, title, startDate,id,typeEvent;
+        public TextView name, title, startDate,id,typeEvent,txtDescription;
         public LinearLayout Ltype;
         public CardView cardView;
+        public SwitchCompat execute;
+        ProgressDialog dialog =null;
 
         public CalendarViewHolder(final View view) {
             super(view);
@@ -71,6 +88,11 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
             id= (TextView) view.findViewById(R.id.txtId);
             Ltype=(LinearLayout) view.findViewById(R.id.Ltype);
             cardView=(CardView)view.findViewById(R.id.cv);
+            execute=(SwitchCompat)view.findViewById(R.id.Sexecute);
+            txtDescription=(TextView)view.findViewById(R.id.txtDescription);
+
+
+
 
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +102,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
                     if (listener != null)
                         listener.onItemClick(id.getText().toString(), getLayoutPosition());
                 }
+
+
             });
         }
 
@@ -87,8 +111,57 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
             typeEvent.setText(model.getTypeEvent());
             name.setText(model.getFullName());
             title.setText(model.getTitle());
+            txtDescription.setText(model.getDescription());
+            Integer idEvent=Integer.parseInt(model.getId().toString());
+            execute.setTextOn(idEvent.toString());
+            execute.setTextOff(idEvent.toString());
+            if(model.getExecuted()=="true")
+            {
+                execute.setChecked(true);
+            }else {
+                execute.setChecked(false);
+            }
 
-            startDate.setText(model.getStartDate() + " * " +model.getStrStartDate() + " / "+model.getStrEndDate());
+            execute.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
+
+                    RestService restService;
+                    restService = new RestService();
+                    String id=((SwitchCompat)buttonView).getTextOn().toString();
+
+                    Integer idE=Integer.parseInt(id);
+
+                    restService.getService().EventCalendarExecuted(idE,isChecked,new Callback<Boolean>() {
+                        @Override
+                        public void success(Boolean events, Response response) {
+
+                            if(isChecked)
+                            {
+                                cardView.setCardBackgroundColor(Color.argb(25,76,175, 80));
+                            }else {
+                                cardView.setCardBackgroundColor(Color.argb(25,255,193, 7));
+                            }
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+
+                        }
+                    });
+                }
+            });
+            DateFormat dfLbl = new SimpleDateFormat("MM/dd/yyyy");
+            DateFormat outputf = new SimpleDateFormat("dd/MM/yyyy");
+            String dateEventStr="";
+            try {
+                Date dateSt=dfLbl.parse(model.getStartDate().toString());
+                dateEventStr=outputf.format(dateSt);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            startDate.setText(dateEventStr + " * " +model.getStrStartDate() + " / "+model.getStrEndDate());
             id.setText(model.getId());
             String type=model.getTypeEvent();
             if (type=="Cita")
@@ -154,8 +227,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
 
         }
     }
-
-
 
 
     @Override

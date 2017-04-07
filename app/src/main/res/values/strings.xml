@@ -37,6 +37,7 @@
     <string name="start_">Fecha de inicio</string>
     <string name="date">Fecha</string>
     <string name="filter">Filtrar</string>
+    <string name="require">Campo requerido</string>
 
     <string-array name="costumerstatus_array">
         <item>Estado del cliente</item>

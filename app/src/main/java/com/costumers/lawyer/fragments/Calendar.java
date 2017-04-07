@@ -75,6 +75,7 @@ public class Calendar extends Fragment{
     private TextView txtdate,txtfilter;
     boolean click = false;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -111,6 +112,7 @@ public class Calendar extends Fragment{
                 android.R.layout.simple_list_item_1,
                 arrayStatus );
         spStatus.setAdapter(arrayAdapterStatus);
+        final ImageButton btndate=(ImageButton)view.findViewById(R.id.btnDate);
 
         spStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -119,7 +121,9 @@ public class Calendar extends Fragment{
                 if(!selectStatus.equals("Dia")){
                     txtdate=(TextView) view.findViewById(R.id.txtDate);
                     txtdate.setText("");
+                    btndate.setClickable(false);
                 }else {
+                    btndate.setClickable(true);
                     java.util.Date date= new Date();
                     java.util.Calendar cal = java.util.Calendar.getInstance();
                     cal.setTime(date);
@@ -152,7 +156,7 @@ public class Calendar extends Fragment{
         });
 
 
-        ImageButton btndate=(ImageButton)view.findViewById(R.id.btnDate);
+
         btndate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -272,20 +276,26 @@ public class Calendar extends Fragment{
             }
         });
 
-
         return view;
 
     }
 
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onResume() {
         refreshCalendar();
+        super.onResume();
     }
 
 
-    private void refreshCalendar(){
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
+
+        private void refreshCalendar(){
         //Call to server to grab list of student records. this is a asyn
         try {
             if (conecNetWork()) {
@@ -348,9 +358,9 @@ public class Calendar extends Fragment{
                         for(Event event:lstEvents) {
                             String name="";
                             if(event.FullName.length() > 29) {
-                                name = " - "+event.FullName.substring(0, 29) + "...";
+                                name =event.FullName.substring(0, 29) + "...";
                             }else {
-                                name = " - "+event.FullName;
+                                name =event.FullName;
                             }
                             switch (event.TypeEvent) {
                                 case "1":

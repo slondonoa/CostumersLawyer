@@ -39,4 +39,11 @@ public interface CostumerService {
     @GET("/GetEvents")
     public void getEvents(@Query("type") String type,@Query("date") String date,@Query("client") String client,@Query("id") String id,@Query("status") String status,Callback<List<Event>> callback);
 
+    @POST("/InsertEvent")
+    public void insertEvents(@Query("type") String type,@Query("start") String start,@Query("end") String end,@Query("client") String client,@Query("description") String description,@Query("title") String title,Callback<Integer> callback);
+
+    @POST("/EventCalendarExecuted")
+    public void EventCalendarExecuted(@Query("idevent") Integer idevent,@Query("exec") Boolean exec,Callback<Boolean> callback);
+
+
 }
