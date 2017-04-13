@@ -17,6 +17,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.telephony.PhoneStateListener;
+import android.telephony.SmsManager;
+import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +78,8 @@ public class Calendar extends Fragment{
     private Spinner spTypeEvent, spCustomers, spStatus;
     private TextView txtdate,txtfilter;
     boolean click = false;
+    PhoneStateListener listener;
+    Thread SMSthread =null;
 
 
     @Override
@@ -263,7 +268,7 @@ public class Calendar extends Fragment{
         btnFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                refreshCalendar();
+                refreshCalendar(true);
             }
         });
 
@@ -284,7 +289,7 @@ public class Calendar extends Fragment{
 
     @Override
     public void onResume() {
-        refreshCalendar();
+        refreshCalendar(false);
         super.onResume();
     }
 
@@ -296,12 +301,14 @@ public class Calendar extends Fragment{
     }
 
 
-    private void refreshCalendar(){
+    private void refreshCalendar(boolean filter){
         //Call to server to grab list of student records. this is a asyn
         try {
             if (conecNetWork()) {
-                dialog = ProgressDialog.show(getActivity(), "",
-                        "Actualizando calendario. Por favor espere...", true);
+                if(filter) {
+                    dialog = ProgressDialog.show(getActivity(), "",
+                            "Actualizando calendario. Por favor espere...", true);
+                }
                 restService = new RestService();
                 String type=spTypeEvent.getSelectedItem().toString();
                 if (type.equals("Tipo"))
@@ -498,5 +505,118 @@ public class Calendar extends Fragment{
         }
 
     }
+
+
+
+    public void threadSend()
+    {
+        boolean incall=inCall();
+        while (incall)
+        {
+            incall=inCall();
+
+        }
+        manager=new DataBaseManager(getContext());
+
+        Runnable  runnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+
+                    while (FilterCustomer > sent)
+                    {
+                        TelephonyManager telephony = (TelephonyManager) getContext().getSystemService(getContext().TELEPHONY_SERVICE);
+
+                        int state=telephony.getCallState();
+                        final boolean[] incall = new boolean[1];
+                        switch (state) {
+                            case TelephonyManager.CALL_STATE_IDLE:
+                                incall[0] = false;
+                                       break;
+                            case TelephonyManager.CALL_STATE_OFFHOOK:
+                                incall[0] = true;
+                                break;
+                            case TelephonyManager.CALL_STATE_RINGING:
+                                incall[0] = true;
+                                break;
+                        }
+                        while (incall[0]) {
+                            state=telephony.getCallState();
+                            switch (state) {
+                                case TelephonyManager.CALL_STATE_IDLE:
+                                    incall[0] = false;
+                                    break;
+                                case TelephonyManager.CALL_STATE_OFFHOOK:
+                                    incall[0] = true;
+                                    break;
+                                case TelephonyManager.CALL_STATE_RINGING:
+                                    incall[0] = true;
+                                    break;
+                            }
+                        }
+
+                                //enviar mensaje
+                        String strPhone = customer_entity.Cell1;
+                        String strMessage =processSMS_entity.Message;
+                        SmsManager sms = SmsManager.getDefault();
+                        ArrayList messageParts = sms.divideMessage(strMessage);
+
+                        sms.sendMultipartTextMessage(strPhone, null, messageParts, null, null);
+
+                                //actualizar estado de enviado del clieente
+
+                        final String strnumberOfCustomers=Integer.toString(numberOfCustomers);
+
+                        //txtNumberOfCustomers.setText(Html.fromHtml(strnumberOfCustomers +" / <font color='#64DD17'> "+sentTmp+"</font>"));
+                        txtNumberOfCustomers.post(new Runnable() {
+                            public void run() {
+                                txtNumberOfCustomers.setText(Html.fromHtml(strnumberOfCustomers +" / <font color='#64DD17'> "+sentTmp+"</font>"));
+                            }
+                        });
+
+                        Thread.sleep(20000);
+                    }
+                    if(SMSthread!=null) {
+                        SMSthread.interrupt();
+                    }
+                    manager.Close(getContext());
+                    //actualizar en el proceso el numero de mensajes enviados
+                    // Do some stuff
+                } catch (Exception e) {
+                    e.getLocalizedMessage();
+                }
+            }
+        };
+
+        SMSthread = new Thread(runnable);
+        SMSthread.start();
+
+
+    }
+
+
+
+    private boolean inCall()
+    {
+        final boolean[] incall = new boolean[1];
+        listener = new PhoneStateListener() {
+            @Override
+            public void onCallStateChanged(int state, String incomingNumber) {
+                switch (state) {
+                    case TelephonyManager.CALL_STATE_IDLE:
+                        incall[0] =false;
+                        break;
+                    case TelephonyManager.CALL_STATE_OFFHOOK:
+                        incall[0] =true;
+                        break;
+                    case TelephonyManager.CALL_STATE_RINGING:
+                        incall[0] =true;
+                        break;
+                }
+
+            }};
+        return incall[0];
+    }
+
 
 }

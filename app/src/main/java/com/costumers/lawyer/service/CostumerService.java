@@ -45,5 +45,10 @@ public interface CostumerService {
     @POST("/EventCalendarExecuted")
     public void EventCalendarExecuted(@Query("idevent") Integer idevent,@Query("exec") Boolean exec,Callback<Boolean> callback);
 
+    @POST("/EditEvent")
+    public void EditEvent(@Query("type") String type,@Query("start") String start,@Query("end") String end,@Query("client") String client,@Query("description") String description,@Query("title") String title,@Query("idevent") String idevent,Callback<Boolean> callback);
+
+    @POST("/deleteCalendarById")
+    public void DeleteCalendarById(@Query("idevent") String idevent,Callback<Boolean> callback);
 
 }

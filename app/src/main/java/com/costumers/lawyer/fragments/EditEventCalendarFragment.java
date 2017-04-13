@@ -60,7 +60,7 @@ public class EditEventCalendarFragment extends Fragment {
     View view;
     private Toolbar toolbar;
     TextView txtStart,txtStartTime,txtEndDate,txtEndTime;
-    EditText txtTitle,txtDescription;
+    EditText txtTitle,txtDescription,txtidEvent;
     TextInputLayout textInputLayoutTitle;
     private Spinner spTypeEvent;
     private DataBaseManager manager;
@@ -97,7 +97,9 @@ public class EditEventCalendarFragment extends Fragment {
         txtTitle=(EditText) view.findViewById(R.id.txtTitle);
         textInputLayoutTitle=(TextInputLayout) view.findViewById(R.id.textInputLayoutTitle);
         txtDescription=(EditText) view.findViewById(R.id.txtDescription);
+        txtidEvent=(EditText) view.findViewById(R.id.txtidEvent);
 
+        txtidEvent.setText(idEvent);
 
         ImageButton btnstart=(ImageButton)view.findViewById(R.id.btnSatartDate);
         btnstart.setOnClickListener(new View.OnClickListener() {
@@ -255,7 +257,7 @@ public class EditEventCalendarFragment extends Fragment {
                 try {
                     if (conecNetWork()) {
                         dialog = ProgressDialog.show(getActivity(), "",
-                                "Insertando evento. Por favor espere...", true);
+                                "Editando evento. Por favor espere...", true);
                         if (submitForm()) {
                             String startDate = txtStart.getText().toString();
                             String startTime = txtStartTime.getText().toString();
@@ -284,9 +286,23 @@ public class EditEventCalendarFragment extends Fragment {
 
 
                             }
-                            Customer client = (Customer) spCustomers.getOnItemSelectedListener();
+                            manager=new DataBaseManager(getActivity());
+                            ArrayList<Customer> lstPersons=manager.getAllPersonsVector();
+                            Customer client=new Customer("","");
+                            if (!spCustomers.getText().toString().isEmpty()){
+                                for (Customer customer:lstPersons) {
+                                    if(customer.getName().toString().equals(spCustomers.getText().toString())) {
+                                        client=customer;
+                                    }
+                                }
+                                if(client.getId().isEmpty()) {
+                                    showAlertDialog(getActivity(),"Validación","El cliente elegido no es valido.",true);
+                                    dialog.cancel();
+                                    return;
+                                }
+                            }
                             String clienID = null;
-                            if (client.getId().equals("0")) {
+                            if (client.getId().equals("") || client.getId().equals("0")) {
                                 clienID = null;
                             } else {
                                 clienID = client.getId().toString();
@@ -294,11 +310,14 @@ public class EditEventCalendarFragment extends Fragment {
                             String title = txtTitle.getText().toString();
                             String description = txtDescription.getText().toString();
 
+                            String id=txtidEvent.getText().toString();
+
+
                             restService = new RestService();
 
-                            restService.getService().insertEvents(type,start,end,clienID,description,title,new Callback<Integer>() {
+                            restService.getService().EditEvent(type,start,end,clienID,description,title,id,new Callback<Boolean>() {
                                 @Override
-                                public void success(Integer events, Response response) {
+                                public void success(Boolean events, Response response) {
                                     Toast.makeText(getActivity(), "Calendario actualizado", Toast.LENGTH_LONG).show();
 
                                     getActivity().finish();
@@ -325,6 +344,48 @@ public class EditEventCalendarFragment extends Fragment {
                     showAlertDialog(getActivity(),"Error","No fue posible realizar la actualización del calendario, por favor intentelo de nuevo",true);
                 };
 
+            }
+        });
+
+        Button btnDelete=(Button)view.findViewById(R.id.btnDelete);
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Eliminar")
+                        .setMessage("Desea eliminar este evento?")
+                        .setPositiveButton("Si",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(final DialogInterface dialogM, int which) {
+
+                                        String id=txtidEvent.getText().toString();
+                                        restService = new RestService();
+
+                                        restService.getService().DeleteCalendarById(id,new Callback<Boolean>() {
+                                            @Override
+                                            public void success(Boolean events, Response response) {
+                                                Toast.makeText(getActivity(), "Evento eliminado correctamente.", Toast.LENGTH_LONG).show();
+                                                getActivity().finish();
+                                            }
+
+                                            @Override
+                                            public void failure(RetrofitError error) {
+                                                Toast.makeText(getActivity(), error.getMessage().toString(), Toast.LENGTH_LONG).show();
+                                            }
+                                        });
+                                    }
+                                })
+                        .setNegativeButton("No",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                builder.create();
+                builder.show();
             }
         });
 
@@ -480,13 +541,13 @@ public class EditEventCalendarFragment extends Fragment {
                                 dateEventStart= df.parse(event.strStartDate);
                                 output = outputformat.format(dateEventStart);
                                 txtStart.setText(output.split(" ")[0].toString());
-                                txtStartTime.setText(output.split(" ")[1].toString());
+                                txtStartTime.setText(" "+output.split(" ")[1].toString());
 
                                 //fecha de fin
                                 dataEventEnd= df.parse(event.strEndDate);
                                 output = outputformat.format(dataEventEnd);
                                 txtEndDate.setText(output.split(" ")[0].toString());
-                                txtEndTime.setText(output.split(" ")[1].toString());
+                                txtEndTime.setText(" "+output.split(" ")[1].toString());
 
                             }catch(ParseException pe){
                                 pe.printStackTrace();
@@ -516,15 +577,23 @@ public class EditEventCalendarFragment extends Fragment {
                                     lstPersons );
 
                             spCustomers.setAdapter(arrayAdapterCustomers);
+                            spCustomers.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+                                @Override
+                                public void onFocusChange(View v, boolean hasFocus) {
+                                    if (hasFocus) {
+                                        spCustomers.showDropDown();
+                                    }
+                                }
+                            });
 
                             if (!event.Customer.isEmpty()){
                                 for (Customer customer:lstPersons) {
                                     if(customer.getId().toString().equals(event.Customer)) {
-                                        spCustomers.setSelection(arrayAdapterCustomers.getPosition(customer));
+                                        spCustomers.setText(customer.getName());
                                     }
-
                                 }
                             }
+
                             String[] arrayListTypeEvent = getResources().getStringArray(R.array.type_event);
                             ArrayAdapter<String> arrayAdapterTypeEvent = new ArrayAdapter<String>(
                                     getActivity(),

@@ -249,6 +249,14 @@ public class InsertEventeFragment extends android.support.v4.app.Fragment  {
                 lstPersons );
 
         spCustomers.setAdapter(arrayAdapterCustomers);
+        spCustomers.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    spCustomers.showDropDown();
+                }
+            }
+        });
 
 
         String[] arrayListprocessstatus = getResources().getStringArray(R.array.type_event);
@@ -306,14 +314,15 @@ public class InsertEventeFragment extends android.support.v4.app.Fragment  {
                                     if(customer.getName().toString().equals(spCustomers.getText().toString())) {
                                         client=customer;
                                     }
-
                                 }
                                 if(client.getId().isEmpty()) {
                                     showAlertDialog(getActivity(),"Validación","El cliente elegido no es valido.",true);
+                                    dialog.cancel();
+                                    return;
                                 }
                             }
                             String clienID = null;
-                            if (client.getId().equals("0")) {
+                            if (client.getId().equals("") || client.getId().equals("0")) {
                                 clienID = null;
                             } else {
                                 clienID = client.getId().toString();
