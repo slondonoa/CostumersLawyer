@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.costumers.lawyer.R;
 import com.costumers.lawyer.activity.DetailCostumer;
+import com.costumers.lawyer.activity.EditEventCalendar;
 import com.costumers.lawyer.activity.InsertEventCalendar;
 import com.costumers.lawyer.activity.MainActivity;
 import com.costumers.lawyer.adapter.CalendarAdapter;
@@ -295,7 +296,7 @@ public class Calendar extends Fragment{
     }
 
 
-        private void refreshCalendar(){
+    private void refreshCalendar(){
         //Call to server to grab list of student records. this is a asyn
         try {
             if (conecNetWork()) {
@@ -407,8 +408,14 @@ public class Calendar extends Fragment{
 
                         mAdapter.setOnItemClickListener(new CalendarAdapter.OnItemClickListener() {
                             @Override
-                            public void onItemClick(String Idperson, int position) {
-                                String message = Idperson;
+                            public void onItemClick(String IdEvent, int position) {
+
+                                String message = IdEvent;
+                                Intent intent;
+                                intent = new Intent(getActivity(), EditEventCalendar.class);
+                                intent.putExtra(AlarmClock.EXTRA_MESSAGE, message);
+                                startActivity(intent);
+
                             }
                         });
                         if (dialog != null) {

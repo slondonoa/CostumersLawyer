@@ -1,21 +1,20 @@
 package com.costumers.lawyer.fragments;
 
+
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.os.Handler;
+import android.provider.AlarmClock;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -29,10 +28,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.costumers.lawyer.R;
+
+import com.costumers.lawyer.R;
+import com.costumers.lawyer.activity.EditEventCalendar;
 import com.costumers.lawyer.adapter.CalendarAdapter;
 import com.costumers.lawyer.data.DataBaseManager;
 import com.costumers.lawyer.entities.Customer;
@@ -41,35 +42,35 @@ import com.costumers.lawyer.entities.EventAdapter;
 import com.costumers.lawyer.service.RestService;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import java.sql.DataTruncation;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class InsertEventeFragment extends android.support.v4.app.Fragment  {
-
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class EditEventCalendarFragment extends Fragment {
+    static String idEvent="";
+    View view;
     private Toolbar toolbar;
     TextView txtStart,txtStartTime,txtEndDate,txtEndTime;
     EditText txtTitle,txtDescription;
     TextInputLayout textInputLayoutTitle;
-    View view;
     private Spinner spTypeEvent;
     private DataBaseManager manager;
     ProgressDialog dialog =null;
     RestService restService;
     AutoCompleteTextView spCustomers;
-
-    public static InsertEventeFragment newInstance() {
-        return new InsertEventeFragment();
+    public static EditEventCalendarFragment newInstance(String id) {
+        idEvent=id;
+        return new EditEventCalendarFragment();
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,15 +80,15 @@ public class InsertEventeFragment extends android.support.v4.app.Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_insert_evente, container, false);
-
-
+        view= inflater.inflate(R.layout.fragment_edit_event_calendar, container, false);
 
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        toolbar.setTitle("Insertar Nuevo Evento");
+        toolbar.setTitle("Editar evento");
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(toolbar);
+
 
         txtStart=(TextView)view.findViewById(R.id.txtStarDate) ;
         txtStartTime=(TextView)view.findViewById(R.id.txtStarTimeDate) ;
@@ -96,6 +97,7 @@ public class InsertEventeFragment extends android.support.v4.app.Fragment  {
         txtTitle=(EditText) view.findViewById(R.id.txtTitle);
         textInputLayoutTitle=(TextInputLayout) view.findViewById(R.id.textInputLayoutTitle);
         txtDescription=(EditText) view.findViewById(R.id.txtDescription);
+
 
         ImageButton btnstart=(ImageButton)view.findViewById(R.id.btnSatartDate);
         btnstart.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +141,7 @@ public class InsertEventeFragment extends android.support.v4.app.Fragment  {
         btnstarttime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar now = Calendar.getInstance();
+                java.util.Calendar now = java.util.Calendar.getInstance();
                 com.wdullaer.materialdatetimepicker.time.TimePickerDialog tpd = com.wdullaer.materialdatetimepicker.time.TimePickerDialog.newInstance(
                         new com.wdullaer.materialdatetimepicker.time.TimePickerDialog.OnTimeSetListener() {
                             @Override
@@ -150,8 +152,8 @@ public class InsertEventeFragment extends android.support.v4.app.Fragment  {
                                 txtStartTime.setText(time);
                             }
                         },
-                        now.get(Calendar.HOUR_OF_DAY),
-                        now.get(Calendar.MINUTE),
+                        now.get(java.util.Calendar.HOUR_OF_DAY),
+                        now.get(java.util.Calendar.MINUTE),
                         true
 
                 );
@@ -213,7 +215,7 @@ public class InsertEventeFragment extends android.support.v4.app.Fragment  {
         btnEndTimeDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar now = Calendar.getInstance();
+                java.util.Calendar now = java.util.Calendar.getInstance();
                 com.wdullaer.materialdatetimepicker.time.TimePickerDialog tpd = com.wdullaer.materialdatetimepicker.time.TimePickerDialog.newInstance(
                         new com.wdullaer.materialdatetimepicker.time.TimePickerDialog.OnTimeSetListener() {
                             @Override
@@ -224,8 +226,8 @@ public class InsertEventeFragment extends android.support.v4.app.Fragment  {
                                 txtEndTime.setText(time);
                             }
                         },
-                        now.get(Calendar.HOUR_OF_DAY),
-                        now.get(Calendar.MINUTE),
+                        now.get(java.util.Calendar.HOUR_OF_DAY),
+                        now.get(java.util.Calendar.MINUTE),
                         true
 
                 );
@@ -239,24 +241,9 @@ public class InsertEventeFragment extends android.support.v4.app.Fragment  {
             }
         });
 
-        manager=new DataBaseManager(getActivity());
-        ArrayList<Customer> lstPersons=manager.getAllPersonsVector();
 
 
-        ArrayAdapter<Customer> arrayAdapterCustomers = new ArrayAdapter<Customer>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                lstPersons );
-
-        spCustomers.setAdapter(arrayAdapterCustomers);
-
-
-        String[] arrayListprocessstatus = getResources().getStringArray(R.array.type_event);
-        ArrayAdapter<String> arrayAdapterTypeEvent = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                arrayListprocessstatus );
-        spTypeEvent.setAdapter(arrayAdapterTypeEvent);
+        getEventById(idEvent);
 
 
 
@@ -297,21 +284,7 @@ public class InsertEventeFragment extends android.support.v4.app.Fragment  {
 
 
                             }
-
-                            manager=new DataBaseManager(getActivity());
-                            ArrayList<Customer> lstPersons=manager.getAllPersonsVector();
-                            Customer client=new Customer("","");
-                            if (!spCustomers.getText().toString().isEmpty()){
-                                for (Customer customer:lstPersons) {
-                                    if(customer.getName().toString().equals(spCustomers.getText().toString())) {
-                                        client=customer;
-                                    }
-
-                                }
-                                if(client.getId().isEmpty()) {
-                                    showAlertDialog(getActivity(),"Validación","El cliente elegido no es valido.",true);
-                                }
-                            }
+                            Customer client = (Customer) spCustomers.getOnItemSelectedListener();
                             String clienID = null;
                             if (client.getId().equals("0")) {
                                 clienID = null;
@@ -356,8 +329,10 @@ public class InsertEventeFragment extends android.support.v4.app.Fragment  {
         });
 
 
+
         return view;
     }
+
 
     private boolean submitForm() {
         boolean validate=false;
@@ -474,6 +449,124 @@ public class InsertEventeFragment extends android.support.v4.app.Fragment  {
         }
 
     }
+
+    private void getEventById(String id){
+        //Call to server to grab list of student records. this is a asyn
+        try {
+            if (conecNetWork()) {
+                dialog = ProgressDialog.show(getActivity(), "",
+                        "Consultando evento. Por favor espere...", true);
+                restService = new RestService();
+
+                restService.getService().getEvents(null,null,null,id,null,new Callback<List<Event>>() {
+                    @Override
+                    public void success(List<Event> events, Response response) {
+
+                        List<Event> lstEvents = events;
+
+                        for (Event event:lstEvents) {
+
+                            txtTitle.setText(event.Title);
+                            txtDescription.setText(event.Description);
+
+                            DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
+                            //Desired format: 24 hour format: Change the pattern as per the need
+                            DateFormat outputformat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+                            Date dateEventStart = null;
+                            Date dataEventEnd=null;
+                            String output = null;
+                            try{
+                                //fecha de inicio
+                                dateEventStart= df.parse(event.strStartDate);
+                                output = outputformat.format(dateEventStart);
+                                txtStart.setText(output.split(" ")[0].toString());
+                                txtStartTime.setText(output.split(" ")[1].toString());
+
+                                //fecha de fin
+                                dataEventEnd= df.parse(event.strEndDate);
+                                output = outputformat.format(dataEventEnd);
+                                txtEndDate.setText(output.split(" ")[0].toString());
+                                txtEndTime.setText(output.split(" ")[1].toString());
+
+                            }catch(ParseException pe){
+                                pe.printStackTrace();
+                            }
+
+                            switch (event.TypeEvent) {
+                                case "1":
+                                    event.TypeEvent="Cita";
+                                    break;
+                                case "2":
+                                    event.TypeEvent="Audiencia";
+                                    break;
+                                case "3":
+                                    event.TypeEvent="Vencimiento";
+                                    break;
+                                case "4":
+                                    event.TypeEvent="Otros";
+                            }
+
+                            manager=new DataBaseManager(getActivity());
+                            ArrayList<Customer> lstPersons=manager.getAllPersonsVector();
+
+
+                            ArrayAdapter<Customer> arrayAdapterCustomers = new ArrayAdapter<Customer>(
+                                    getActivity(),
+                                    android.R.layout.simple_list_item_1,
+                                    lstPersons );
+
+                            spCustomers.setAdapter(arrayAdapterCustomers);
+
+                            if (!event.Customer.isEmpty()){
+                                for (Customer customer:lstPersons) {
+                                    if(customer.getId().toString().equals(event.Customer)) {
+                                        spCustomers.setSelection(arrayAdapterCustomers.getPosition(customer));
+                                    }
+
+                                }
+                            }
+                            String[] arrayListTypeEvent = getResources().getStringArray(R.array.type_event);
+                            ArrayAdapter<String> arrayAdapterTypeEvent = new ArrayAdapter<String>(
+                                    getActivity(),
+                                    android.R.layout.simple_list_item_1,
+                                    arrayListTypeEvent );
+                            spTypeEvent.setAdapter(arrayAdapterTypeEvent);
+
+                            spTypeEvent.setSelection(arrayAdapterTypeEvent.getPosition(event.TypeEvent));
+
+
+
+
+                        }
+
+                        if (dialog != null) {
+                            dialog.cancel();
+                        }
+
+                        Toast.makeText(getActivity(), "Calendario actualizado", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Toast.makeText(getActivity(), error.getMessage().toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+            }else {
+
+                showAlertDialog(getActivity(),"Conexión a internet","Usted no cuenta con conexión a internet para la actualizacion del calendario",true);
+            }
+        }catch (Exception e){
+            if (dialog != null) {
+                dialog.cancel();
+            }
+            showAlertDialog(getActivity(),"Error","No fue posible realizar la actualización del calendario, por favor intentelo de nuevo",true);
+        };
+
+    }
+
+
+
 
 
 }

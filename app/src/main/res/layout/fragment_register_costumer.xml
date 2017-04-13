@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/processed_array"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/spProcessed"
                 ></android.support.v7.widget.AppCompatSpinner>
 
@@ -129,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/costumerstatus_array"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/spcostumersatatus"
                 ></android.support.v7.widget.AppCompatSpinner>
 
@@ -137,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/processstatus_array"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/spprocessstatus"
                 ></android.support.v7.widget.AppCompatSpinner>
 
@@ -145,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/source_array"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/spSource"
                 ></android.support.v7.widget.AppCompatSpinner>
 
@@ -160,6 +160,7 @@
                 android:clickable="false"
                 android:id="@+id/costumer_detail_container"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
                 >
 
                 <TextView

@@ -108,6 +108,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
         }
 
         public void bind(EventAdapter model) {
+            id.setText(model.getId());
             typeEvent.setText(model.getTypeEvent());
             name.setText(model.getFullName());
             title.setText(model.getTitle());

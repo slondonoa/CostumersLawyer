@@ -72,7 +72,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:entries="@array/costumerstatus_array"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="20dp"
     android:id="@+id/spcostumersatatus"
     />
 
@@ -80,14 +80,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/processstatus_array"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/spprocessstatus" />
 
     <android.support.v7.widget.AppCompatSpinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/processed_array"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/spProcessed">
     </android.support.v7.widget.AppCompatSpinner>
 
@@ -95,7 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/source_array"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/spSource">
      </android.support.v7.widget.AppCompatSpinner>
 
@@ -108,15 +108,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lastcontat_"
-            android:checked="true"/>
+            android:checked="true"
+            android:layout_marginTop="20dp"/>
         <android.support.v7.widget.AppCompatRadioButton android:id="@+id/radio_limitprocess"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/limitprocess_"/>
+            android:text="@string/limitprocess_"
+            android:layout_marginTop="20dp"/>
         <android.support.v7.widget.AppCompatRadioButton android:id="@+id/radio_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/start_"/>
+            android:text="@string/start_"
+            android:layout_marginTop="20dp"/>
     </RadioGroup>
 
         </LinearLayout>

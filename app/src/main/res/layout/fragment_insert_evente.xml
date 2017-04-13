@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    tools:context=".activity.EditCostumer"
+    tools:context=".activity.InsertEventCalendar"
     >
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -151,38 +151,46 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"/>
                 </GridLayout>
+
+                <AutoCompleteTextView
+                    android:id="@+id/spCustomers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="start"
+                    android:hint="Cliente"
+                    > </AutoCompleteTextView>
+
                 <android.support.v7.widget.AppCompatSpinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:id="@+id/spTypeEvent"
                     ></android.support.v7.widget.AppCompatSpinner>
-                <android.support.v7.widget.AppCompatSpinner
+
+
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/spCustomers"
-                    ></android.support.v7.widget.AppCompatSpinner>
-
-
-
-
+                    android:gravity="center_horizontal"
+                    android:padding="16dp"
+                    android:layout_marginTop="100dp">
+                    <Button android:text="guardar"
+                        android:id="@+id/btnsave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"/>
+                </LinearLayout>
 
 
 
             </LinearLayout>
         </ScrollView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:padding="16dp">
-            <Button android:text="guardar"
-                android:id="@+id/btnsave"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"/>
-        </LinearLayout>
+
 
 </LinearLayout>
 

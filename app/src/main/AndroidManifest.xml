@@ -52,9 +52,11 @@
             android:name=".activity.InsertEventCalendar"
             android:label="Insertar evento"
             android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/MyMaterialTheme"
-            android:windowSoftInputMode="adjustNothing" />
-
+            android:theme="@style/MyMaterialTheme"/>
+        <activity android:name=".activity.EditEventCalendar"
+            android:label="Editar evento"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/MyMaterialTheme"></activity>
     </application>
 
 </manifest>
