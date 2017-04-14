@@ -17,7 +17,9 @@ public class EventAdapter {
                             String Executed,
                             String FullName,
                             String strStartDate,
-                            String strEndDate){
+                            String strEndDate,
+                            String sms
+                         ){
         this.Id=Id;
         this.TypeEvent=TypeEvent;
         this.Description=Description;
@@ -29,6 +31,7 @@ public class EventAdapter {
         this.FullName=FullName;
         this.strStartDate=strStartDate;
         this.strEndDate=strEndDate;
+        this.sms=sms;
 
     }
 
@@ -37,6 +40,16 @@ public class EventAdapter {
     public String Description;
     public String Customer;
     public String StartDate;
+
+    public String getSms() {
+        return sms;
+    }
+
+    public void setSms(String sms) {
+        this.sms = sms;
+    }
+
+    public String sms;
 
     public String getId() {
         return Id;

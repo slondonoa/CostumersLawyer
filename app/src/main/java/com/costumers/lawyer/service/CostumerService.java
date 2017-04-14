@@ -5,6 +5,7 @@ package com.costumers.lawyer.service;
  * Created by Tan on 6/26/2015.
  */
 import com.costumers.lawyer.entities.Event;
+import com.costumers.lawyer.entities.EventSMS;
 import com.costumers.lawyer.entities.Persons;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Query;
+import retrofit2.Call;
 
 public interface CostumerService {
     //Retrofit turns our institute WEB API into a Java interface.
@@ -50,5 +52,6 @@ public interface CostumerService {
 
     @POST("/deleteCalendarById")
     public void DeleteCalendarById(@Query("idevent") String idevent,Callback<Boolean> callback);
+
 
 }

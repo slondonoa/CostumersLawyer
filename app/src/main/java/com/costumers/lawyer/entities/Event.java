@@ -19,4 +19,5 @@ public class Event {
     public String FullName;
     public String strStartDate;
     public String strEndDate;
+    public String sms;
 }

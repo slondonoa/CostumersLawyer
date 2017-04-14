@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,6 +78,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
         public LinearLayout Ltype;
         public CardView cardView;
         public SwitchCompat execute;
+        public ImageButton ImgSMS;
         ProgressDialog dialog =null;
 
         public CalendarViewHolder(final View view) {
@@ -90,6 +92,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
             cardView=(CardView)view.findViewById(R.id.cv);
             execute=(SwitchCompat)view.findViewById(R.id.Sexecute);
             txtDescription=(TextView)view.findViewById(R.id.txtDescription);
+            ImgSMS=(ImageButton)view.findViewById(R.id.sms);
+
 
 
 
@@ -121,6 +125,13 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
                 execute.setChecked(true);
             }else {
                 execute.setChecked(false);
+            }
+
+            if(model.getSms()=="true")
+            {
+                ImgSMS.setVisibility(View.VISIBLE);
+            }else {
+                ImgSMS.setVisibility(View.GONE);
             }
 
             execute.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

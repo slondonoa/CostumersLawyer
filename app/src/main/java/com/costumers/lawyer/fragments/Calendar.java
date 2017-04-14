@@ -44,7 +44,9 @@ import com.costumers.lawyer.data.DataBaseManager;
 import com.costumers.lawyer.entities.Customer;
 import com.costumers.lawyer.entities.Event;
 import com.costumers.lawyer.entities.EventAdapter;
+import com.costumers.lawyer.entities.EventSMS;
 import com.costumers.lawyer.entities.Persons;
+import com.costumers.lawyer.service.R2ClienteService;
 import com.costumers.lawyer.service.RestService;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
@@ -59,6 +61,8 @@ import java.util.Locale;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import retrofit2.Call;
+import retrofit2.Retrofit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -290,6 +294,7 @@ public class Calendar extends Fragment{
     @Override
     public void onResume() {
         refreshCalendar(false);
+        threadSend();
         super.onResume();
     }
 
@@ -309,7 +314,7 @@ public class Calendar extends Fragment{
                     dialog = ProgressDialog.show(getActivity(), "",
                             "Actualizando calendario. Por favor espere...", true);
                 }
-                restService = new RestService();
+
                 String type=spTypeEvent.getSelectedItem().toString();
                 if (type.equals("Tipo"))
                 {
@@ -351,7 +356,7 @@ public class Calendar extends Fragment{
                 String id=null;
                 spStatus = (Spinner) getActivity().findViewById(R.id.spStatus);
                 String selectStatus=spStatus.getSelectedItem().toString();
-
+                restService = new RestService();
                 restService.getService().getEvents(type,date,clienID,id,selectStatus,new Callback<List<Event>>() {
                     @Override
                     public void success(List<Event> events, Response response) {
@@ -406,7 +411,7 @@ public class Calendar extends Fragment{
                             }
 
                             EventAdapter pa=new EventAdapter(event.Id,event.TypeEvent,event.Description,event.Customer,strStartDate
-                                    ,strEndDate,event.Title,event.Executed,name.toUpperCase(),strStrartHour,strEndHour);
+                                    ,strEndDate,event.Title,event.Executed,name.toUpperCase(),strStrartHour,strEndHour,event.sms);
                             mEvents.add(pa);
 
                         }
@@ -522,66 +527,106 @@ public class Calendar extends Fragment{
             @Override
             public void run() {
                 try {
+                    /*
+                    try {
+                        SMSthread.sleep(20000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    */
 
-                    while (FilterCustomer > sent)
-                    {
-                        TelephonyManager telephony = (TelephonyManager) getContext().getSystemService(getContext().TELEPHONY_SERVICE);
 
-                        int state=telephony.getCallState();
-                        final boolean[] incall = new boolean[1];
-                        switch (state) {
-                            case TelephonyManager.CALL_STATE_IDLE:
-                                incall[0] = false;
-                                       break;
-                            case TelephonyManager.CALL_STATE_OFFHOOK:
-                                incall[0] = true;
-                                break;
-                            case TelephonyManager.CALL_STATE_RINGING:
-                                incall[0] = true;
-                                break;
-                        }
-                        while (incall[0]) {
-                            state=telephony.getCallState();
-                            switch (state) {
-                                case TelephonyManager.CALL_STATE_IDLE:
-                                    incall[0] = false;
-                                    break;
-                                case TelephonyManager.CALL_STATE_OFFHOOK:
-                                    incall[0] = true;
-                                    break;
-                                case TelephonyManager.CALL_STATE_RINGING:
-                                    incall[0] = true;
-                                    break;
-                            }
-                        }
+                    java.util.Date getDate= new Date();
+                    java.util.Calendar cal = java.util.Calendar.getInstance();
+                    cal.setTime(getDate);
+                    cal.add(java.util.Calendar.DATE,1);
+                    DateFormat outputf = new SimpleDateFormat("yyyy-MM-dd");
+
+                    String dateEvent=outputf.format(cal.getTime());
+
+                    R2ClienteService rService = R2ClienteService.retrofit.create(R2ClienteService.class);
+                    Call<List<EventSMS>> call = rService.GetEventsSMS(dateEvent);
+                    call.enqueue(new retrofit2.Callback<List<EventSMS>>() {
+                        @Override
+                        public void onResponse(Call<List<EventSMS>> call, retrofit2.Response<List<EventSMS>> response) {
+                            List<EventSMS>  lstEvents= response.body();
+
+                            for (EventSMS eventSMS:lstEvents)
+                            {
+                                TelephonyManager telephony = (TelephonyManager) getContext().getSystemService(getContext().TELEPHONY_SERVICE);
+
+                                int state=telephony.getCallState();
+                                final boolean[] incall = new boolean[1];
+                                switch (state) {
+                                    case TelephonyManager.CALL_STATE_IDLE:
+                                        incall[0] = false;
+                                        break;
+                                    case TelephonyManager.CALL_STATE_OFFHOOK:
+                                        incall[0] = true;
+                                        break;
+                                    case TelephonyManager.CALL_STATE_RINGING:
+                                        incall[0] = true;
+                                        break;
+                                }
+                                while (incall[0]) {
+                                    state=telephony.getCallState();
+                                    switch (state) {
+                                        case TelephonyManager.CALL_STATE_IDLE:
+                                            incall[0] = false;
+                                            break;
+                                        case TelephonyManager.CALL_STATE_OFFHOOK:
+                                            incall[0] = true;
+                                            break;
+                                        case TelephonyManager.CALL_STATE_RINGING:
+                                            incall[0] = true;
+                                            break;
+                                    }
+                                }
 
                                 //enviar mensaje
-                        String strPhone = customer_entity.Cell1;
-                        String strMessage =processSMS_entity.Message;
-                        SmsManager sms = SmsManager.getDefault();
-                        ArrayList messageParts = sms.divideMessage(strMessage);
+                                String strPhone = eventSMS.cell;
+                                String strMessage =eventSMS.message;
+                                SmsManager sms = SmsManager.getDefault();
+                                ArrayList messageParts = sms.divideMessage(strMessage);
 
-                        sms.sendMultipartTextMessage(strPhone, null, messageParts, null, null);
+                                //sms.sendMultipartTextMessage(strPhone, null, messageParts, null, null);
+                                String id= String.valueOf(eventSMS.IdEvent);
 
-                                //actualizar estado de enviado del clieente
+                                R2ClienteService rService = R2ClienteService.retrofit.create(R2ClienteService.class);
+                                Call<Boolean> calluPDATE = rService.UpdateSendSMS(id);
+                                calluPDATE.enqueue(new retrofit2.Callback<Boolean>() {
+                                    @Override
+                                    public void onResponse(Call<Boolean> call, retrofit2.Response<Boolean> response) {
 
-                        final String strnumberOfCustomers=Integer.toString(numberOfCustomers);
+                                    }
 
-                        //txtNumberOfCustomers.setText(Html.fromHtml(strnumberOfCustomers +" / <font color='#64DD17'> "+sentTmp+"</font>"));
-                        txtNumberOfCustomers.post(new Runnable() {
-                            public void run() {
-                                txtNumberOfCustomers.setText(Html.fromHtml(strnumberOfCustomers +" / <font color='#64DD17'> "+sentTmp+"</font>"));
+                                    @Override
+                                    public void onFailure(Call<Boolean> call, Throwable t) {
+
+                                    }
+                                });
+
+
+                                try {
+                                    SMSthread.sleep(20000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                             }
-                        });
+                            if(SMSthread!=null) {
+                                SMSthread.interrupt();
+                                refreshCalendar(false);
+                            }
 
-                        Thread.sleep(20000);
-                    }
-                    if(SMSthread!=null) {
-                        SMSthread.interrupt();
-                    }
-                    manager.Close(getContext());
-                    //actualizar en el proceso el numero de mensajes enviados
-                    // Do some stuff
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<EventSMS>> call, Throwable t) {
+                            Toast.makeText(getActivity(), t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                        }
+
+                    });
+
                 } catch (Exception e) {
                     e.getLocalizedMessage();
                 }
