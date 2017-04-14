@@ -589,7 +589,7 @@ public class Calendar extends Fragment{
                                 SmsManager sms = SmsManager.getDefault();
                                 ArrayList messageParts = sms.divideMessage(strMessage);
 
-                                //sms.sendMultipartTextMessage(strPhone, null, messageParts, null, null);
+                                sms.sendMultipartTextMessage(strPhone, null, messageParts, null, null);
                                 String id= String.valueOf(eventSMS.IdEvent);
 
                                 R2ClienteService rService = R2ClienteService.retrofit.create(R2ClienteService.class);
