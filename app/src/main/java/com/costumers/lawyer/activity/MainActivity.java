@@ -109,6 +109,16 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        if (!checkPermissionSMS()) {
+
+            requestPermissionSMS();
+
+        } else {
+
+            Toast.makeText(MainActivity.this, "Tiene permisos de SMS", Toast.LENGTH_LONG).show();
+
+        }
+
 
     }
 
@@ -488,6 +498,31 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
             ActivityCompat.requestPermissions(activity,new String[]{Manifest.permission.CALL_PHONE},PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    private boolean checkPermissionSMS(){
+        int result = ContextCompat.checkSelfPermission(context, Manifest.permission.SEND_SMS);
+        if (result == PackageManager.PERMISSION_GRANTED){
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+    }
+
+    private void requestPermissionSMS(){
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity,Manifest.permission.SEND_SMS)){
+
+            Toast.makeText(context,"Tiene permisos sobre envio de SMS",Toast.LENGTH_LONG).show();
+
+        } else {
+
+            ActivityCompat.requestPermissions(activity,new String[]{Manifest.permission.SEND_SMS},PERMISSION_REQUEST_CODE);
         }
     }
 
