@@ -72,12 +72,16 @@
             android:layout_marginTop="10dp"
             android:id="@+id/spTypeEvent"
             ></android.support.v7.widget.AppCompatSpinner>
-        <android.support.v7.widget.AppCompatSpinner
+
+        <AutoCompleteTextView
+            android:id="@+id/spCustomers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:id="@+id/spCustomers"
-            ></android.support.v7.widget.AppCompatSpinner>
+            android:hint="Cliente"> </AutoCompleteTextView>
+
 
         <android.support.v7.widget.AppCompatSpinner
             android:layout_width="match_parent"

@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -79,11 +80,12 @@ public class Calendar extends Fragment{
     private List<EventAdapter> mEvents;
     ProgressDialog dialog =null;
     RestService restService;
-    private Spinner spTypeEvent, spCustomers, spStatus;
+    private Spinner spTypeEvent, spStatus;
     private TextView txtdate,txtfilter;
     boolean click = false;
     PhoneStateListener listener;
     Thread SMSthread =null;
+    AutoCompleteTextView spCustomers;
 
 
     @Override
@@ -98,7 +100,7 @@ public class Calendar extends Fragment{
         txtfilter=(TextView) view.findViewById(R.id.txtfilter);
 
         spTypeEvent = (Spinner) view.findViewById(R.id.spTypeEvent);
-        spCustomers = (Spinner) view.findViewById(R.id.spCustomers);
+        spCustomers = (AutoCompleteTextView) view.findViewById(R.id.spCustomers);
         spStatus = (Spinner) view.findViewById(R.id.spStatus);
 
 
@@ -113,8 +115,16 @@ public class Calendar extends Fragment{
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 lstPersons );
-
         spCustomers.setAdapter(arrayAdapterCustomers);
+
+        spCustomers.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    spCustomers.showDropDown();
+                }
+            }
+        });
 
         String[] arrayStatus = getResources().getStringArray(R.array.event_status);
         ArrayAdapter<String> arrayAdapterStatus = new ArrayAdapter<String>(
@@ -346,15 +356,28 @@ public class Calendar extends Fragment{
                 {
                     date=null;
                 }
-                Customer client=(Customer) spCustomers.getSelectedItem();
-                String clienID=null;
-                if ( client.getId().equals("0") )
-                {
-                    clienID=null;
-                }else
-                {
-                    clienID=client.getId().toString();
+                manager=new DataBaseManager(getActivity());
+                ArrayList<Customer> lstPersons=manager.getAllPersonsVector();
+                Customer client=new Customer("","");
+                if (!spCustomers.getText().toString().isEmpty()){
+                    for (Customer customer:lstPersons) {
+                        if(customer.getName().toString().equals(spCustomers.getText().toString())) {
+                            client=customer;
+                        }
+                    }
+                    if(client.getId().isEmpty()) {
+                        showAlertDialog(getActivity(),"Validación","El cliente elegido no es valido.",true);
+                        dialog.cancel();
+                        return;
+                    }
                 }
+                String clienID = null;
+                if (client.getId().equals("") || client.getId().equals("0")) {
+                    clienID = null;
+                } else {
+                    clienID = client.getId().toString();
+                }
+
                 String id=null;
                 spStatus = (Spinner) getActivity().findViewById(R.id.spStatus);
                 String selectStatus=spStatus.getSelectedItem().toString();
@@ -454,9 +477,23 @@ public class Calendar extends Fragment{
                             textFilter=textFilter + " - Tipo: "+type;
                         }
 
-                        Customer client=(Customer) spCustomers.getSelectedItem();
+                        manager=new DataBaseManager(getActivity());
+                        ArrayList<Customer> lstPersons=manager.getAllPersonsVector();
+                        Customer client=new Customer("","");
+                        if (!spCustomers.getText().toString().isEmpty()){
+                            for (Customer customer:lstPersons) {
+                                if(customer.getName().toString().equals(spCustomers.getText().toString())) {
+                                    client=customer;
+                                }
+                            }
+                            if(client.getId().isEmpty()) {
+                                showAlertDialog(getActivity(),"Validación","El cliente elegido no es valido.",true);
+                                dialog.cancel();
+                                return;
+                            }
+                        }
                         String clienID=null;
-                        if ( client.getId().equals("0") )
+                        if ( client.getId().equals("0") ||  client.getId().equals(""))
                         {
                             clienID=null;
                         }else
