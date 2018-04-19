@@ -196,9 +196,9 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
             }
             else {
                     //Format of the date defined in the input String
-                    DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
+                    DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa" , Locale.US);
                     //Desired format: 24 hour format: Change the pattern as per the need
-                    DateFormat outputformat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+                    DateFormat outputformat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss", Locale.US);
                     Date dateEvent = null;
                     String output = null;
                     try{

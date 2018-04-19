@@ -26,7 +26,7 @@ public interface R2ClienteService {
 
 
     public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://costumermanagement.azurewebsites.net/")
+            .baseUrl("https://abogadospensionesapi.azurewebsites.net/")
             .addConverterFactory(GsonConverterFactory.create())
             .callbackExecutor(Executors.newSingleThreadExecutor())
             .build();
